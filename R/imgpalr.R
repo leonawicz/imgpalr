@@ -238,6 +238,7 @@ image_load <- function(file){
   if(is_url){
     tmp <- tempfile()
     downloader::download(file, destfile = tmp, quiet = TRUE, mode = "wb")
+    file <- tmp
   }
   if(ext %in% c(".jpg", ".jpeg")){
     if(!requireNamespace("jpeg", quietly = TRUE)){

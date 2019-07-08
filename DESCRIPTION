@@ -1,0 +1,31 @@
+Package: imgpalr
+Title: Create Color Palettes from Images
+Version: 0.1.0
+Authors@R: person("Matthew", "Leonawicz", email = "matt_leonawicz@esource.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-9452-2771"))
+Description: Provides ability to create color palettes from image files. 
+    It offers control over the type of color palette to derive from an image (qualitative, sequential or divergent) and other palette properties.
+    Quantiles of an image color distribution can be trimmed. 
+    Near-black or near-white colors can be trimmed in RGB color space independent of trimming brightness or saturation distributions in HSV color space.
+    Creating sequential palettes also offers control over the order of HSV color dimensions to sort by.
+    This package differs from other related packages like 'RImagePalette' in approaches to quantizing and extracting colors in images to assemble color palettes 
+    and the level of user control over palettes construction.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/leonawicz/imgpalr
+BugReports: https://github.com/leonawicz/imgpalr/issues
+Suggests: 
+    testthat,
+    covr,
+    bmp,
+    png,
+    jpeg,
+    magick,
+    lintr
+Language: en-US
+RoxygenNote: 6.1.1
+Imports: 
+    downloader,
+    tibble,
+    magrittr,
+    dplyr

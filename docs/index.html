@@ -100,7 +100,7 @@
 <p><a href="https://cran.r-project.org/package=imgpalr"><img src="http://www.r-pkg.org/badges/version/imgpalr" alt="CRAN status"></a> <a href="https://cran.r-project.org/package=imgpalr"><img src="http://cranlogs.r-pkg.org/badges/grand-total/imgpalr" alt="CRAN downloads"></a> <a href="http://www.rdocumentation.org/packages/imgpalr"><img src="http://www.rdocumentation.org/badges/version/imgpalr" alt="Rdoc"></a> <a href="https://travis-ci.org/leonawicz/imgpalr"><img src="https://travis-ci.org/leonawicz/imgpalr.svg?branch=master" alt="Travis build status"></a> <a href="https://ci.appveyor.com/project/leonawicz/imgpalr"><img src="https://ci.appveyor.com/api/projects/status/github/leonawicz/imgpalr?branch=master&amp;svg=true" alt="AppVeyor build status"></a> <a href="https://codecov.io/gh/leonawicz/imgpalr?branch=master"><img src="https://codecov.io/gh/leonawicz/imgpalr/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></p>
 <p>The <code>imgpalr</code> package makes it easy to create color palettes from image files.</p>
 <ul>
-<li>It offers control over the type of color various palette properties including palette type: qualitative, sequential or divergent.</li>
+<li>Choose the type of color palette to derive from an image: qualitative, sequential or divergent.</li>
 <li>Quantiles of an image color distribution can be trimmed.</li>
 <li>Near-black or near-white colors can be trimmed in RGB space independent of trimming brightness or saturation distributions in HSV space.</li>
 <li>Creating sequential palettes also offers control over the order of HSV color dimensions to sort by.</li>
@@ -109,48 +109,48 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the development version of <code>imgpalr</code> from GitHub with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># install.packages("remotes")</span></a>
-<a class="sourceLine" id="cb1-2" title="2">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"leonawicz/imgpalr"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("remotes")</span>
+remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"leonawicz/imgpalr"</span>)</code></pre></div>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
 <p>The main function is <code>image_pal</code>. It accepts PNG, JPG, BMP or GIF (first frame) images either from disk or URL. It returns a vector of colors defining a palette based on the image and your other function arguments. You can also set <code>plot = TRUE</code> to plot a preview of the palette, which includes the source image thumbnail for visual reference.</p>
 <p>The examples below offer some typical considerations to make when deriving a color palette from an arbitrary image.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(imgpalr)</a>
-<a class="sourceLine" id="cb2-2" title="2"></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb2-4" title="4">x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="dt">package =</span> <span class="st">"imgpalr"</span>), <span class="st">"/"</span>,</a>
-<a class="sourceLine" id="cb2-5" title="5">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"blue-yellow"</span>, <span class="st">"purples"</span>, <span class="st">"colors"</span>), <span class="st">".jpg"</span>)</a>
-<a class="sourceLine" id="cb2-6" title="6"></a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="co"># Three palette types, one image</span></a>
-<a class="sourceLine" id="cb2-8" title="8"><span class="co"># Focus on bright, saturated colors for divergent palette:</span></a>
-<a class="sourceLine" id="cb2-9" title="9"><span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">1</span>], <span class="dt">type =</span> <span class="st">"div"</span>,</a>
-<a class="sourceLine" id="cb2-10" title="10">  <span class="dt">saturation =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.75</span>, <span class="dv">1</span>), <span class="dt">brightness =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.75</span>, <span class="dv">1</span>), <span class="dt">plot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(imgpalr)
+
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">1</span>)
+x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="dt">package =</span> <span class="st">"imgpalr"</span>), <span class="st">"/"</span>,
+  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"blue-yellow"</span>, <span class="st">"purples"</span>, <span class="st">"colors"</span>), <span class="st">".jpg"</span>)
+
+<span class="co"># Three palette types, one image</span>
+<span class="co"># Focus on bright, saturated colors for divergent palette:</span>
+<span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">1</span>], <span class="dt">type =</span> <span class="st">"div"</span>,
+  <span class="dt">saturation =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.75</span>, <span class="dv">1</span>), <span class="dt">brightness =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.75</span>, <span class="dv">1</span>), <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="reference/figures/README-example-1.png" width="100%"></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="co"># Remove colors too close to black and white for qualitative palette:</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">1</span>], <span class="dt">type =</span> <span class="st">"qual"</span>, <span class="dt">bw =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.25</span>, <span class="fl">0.9</span>), <span class="dt">plot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="co"># Remove colors too close to black and white for qualitative palette:</span>
+<span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">1</span>], <span class="dt">type =</span> <span class="st">"qual"</span>, <span class="dt">bw =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.25</span>, <span class="fl">0.9</span>), <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="reference/figures/README-example-2.png" width="100%"></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"></a>
-<a class="sourceLine" id="cb4-2" title="2"> <span class="co"># A challenging sequential mapping</span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">1</span>], <span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">saturation =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.2</span>, <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb4-4" title="4">  <span class="dt">brightness =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.5</span>, <span class="dv">1</span>), <span class="dt">seq_by =</span> <span class="st">"hsv"</span>, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+ <span class="co"># A challenging sequential mapping</span>
+<span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">1</span>], <span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">saturation =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.2</span>, <span class="dv">1</span>),
+  <span class="dt">brightness =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.5</span>, <span class="dv">1</span>), <span class="dt">seq_by =</span> <span class="st">"hsv"</span>, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="reference/figures/README-example-3.png" width="100%"></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># An image with one main hue;</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="co"># sequential is most sensible, but not necessarily best sorted by hue</span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">2</span>], <span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">seq_by =</span> <span class="st">"hsv"</span>, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># An image with one main hue;</span>
+<span class="co"># sequential is most sensible, but not necessarily best sorted by hue</span>
+<span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">2</span>], <span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">seq_by =</span> <span class="st">"hsv"</span>, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="reference/figures/README-example2-1.png" width="100%"></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">2</span>], <span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">seq_by =</span> <span class="st">"svh"</span>, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">2</span>], <span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">seq_by =</span> <span class="st">"svh"</span>, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="reference/figures/README-example2-2.png" width="100%"></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">2</span>], <span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">seq_by =</span> <span class="st">"vsh"</span>, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">2</span>], <span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">seq_by =</span> <span class="st">"vsh"</span>, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="reference/figures/README-example2-3.png" width="100%"></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="co"># An image with one several hues;</span></a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="co"># divergent is not sensible here, sequential should be by hue</span></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">3</span>], <span class="dt">type =</span> <span class="st">"qual"</span>, <span class="dt">brightness =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.4</span>, <span class="dv">1</span>), <span class="dt">plot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="co"># An image with one several hues;</span>
+<span class="co"># divergent is not sensible here, sequential should be by hue</span>
+<span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">3</span>], <span class="dt">type =</span> <span class="st">"qual"</span>, <span class="dt">brightness =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.4</span>, <span class="dv">1</span>), <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="reference/figures/README-example2-4.png" width="100%"></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">3</span>], <span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">bw =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.2</span>, <span class="dv">1</span>), <span class="dt">saturation =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.2</span>, <span class="dv">1</span>), <span class="dt">plot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">3</span>], <span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">bw =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.2</span>, <span class="dv">1</span>), <span class="dt">saturation =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.2</span>, <span class="dv">1</span>), <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="reference/figures/README-example2-5.png" width="100%"></p>
 <p>Palette generation uses k-means clustering; results are different each time you call <code>image_pal</code>. If the palette you obtain does not feel right, even with fixed arguments you can run it again to obtain a different palette. Depending on the settings and the nature of the source image, it may change quite a bit. If you need a reproducible palette, set the <code>seed</code> argument. In the example above, the seed was set globally to avoid having to set it in each call to <code>image_pal</code>.</p>
 </div>

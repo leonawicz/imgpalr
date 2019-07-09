@@ -84,3 +84,13 @@ image_pal(x[3], type = "seq", bw = c(0.2, 1), saturation = c(0.2, 1), plot = TRU
 ```
 
 Palette generation uses k-means clustering; results are different each time you call `image_pal`. If the palette you obtain does not feel right, even with fixed arguments you can run it again to obtain a different palette. Depending on the settings and the nature of the source image, it may change quite a bit. If you need a reproducible palette, set the `seed` argument. In the example above, the seed was set globally to avoid having to set it in each call to `image_pal`.
+
+Note: If you get a strange warning when using `image_pal` on specific images, with certain function arguments that looks like `Quick-TRANSfer stage steps exceeded maximum`, you can safely ignore this. It has to do with the k-means algorithm not converging in the number of max iterations it is set to. This can happen when there are too many colors in an image that are too close to one another and/or too many cluster centers (not the same as `n`), as far as I can tell. But it's a harmless warning. Anyhow, I will try to take care of it in the subsequent version soon.
+
+## Related resources
+
+There is also the [RImagePalette](https://CRAN.R-project.org/package=RImagePalette) package on CRAN, which uses the median cut algorithm for finding they dominant colors in an image.
+
+`imgpalr` was originally inspired by the [paletter](https://github.com/AndreaCirilloAC/paletter) package on GitHub. Both packages use k-means clustering to find key image colors, but take some different approaches in methods for assembling color palettes.
+
+The palette preview (without the thumbnail addition) is based off of `scales::show_col`, which is a convenient function for plotting palettes. You can also use `pals::pal.bands` to do the same using a different visual layout.

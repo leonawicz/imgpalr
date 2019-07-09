@@ -23,8 +23,8 @@ coverage](https://codecov.io/gh/leonawicz/imgpalr/branch/master/graph/badge.svg)
 The `imgpalr` package makes it easy to create color palettes from image
 files.
 
-  - It offers control over the type of color various palette properties
-    including palette type: qualitative, sequential or divergent.
+  - Choose the type of color palette to derive from an image:
+    qualitative, sequential or divergent.
   - Quantiles of an image color distribution can be trimmed.
   - Near-black or near-white colors can be trimmed in RGB space
     independent of trimming brightness or saturation distributions in

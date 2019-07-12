@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
   message = FALSE, warning = FALSE, error = FALSE, out.width = "100%", fig.width=4, fig.height=2.4
 )
 library(imgpalr)
-formals(image_pal)$label_size <- 0.5
+image_pal <- function(...) imgpalr::image_pal(..., label_size = 0.5)
 ```
 
 # imgpalr <img src="man/figures/logo.png" style="margin-left:10px;margin-bottom:5px;" width="120" align="right">
@@ -50,6 +50,10 @@ You can also set `plot = TRUE` to plot a preview of the palette, which includes 
 
 The examples below offer some typical considerations to make when deriving a color palette from an arbitrary image.
 
+### Three palette types
+
+In this first set of examples, divergent, qualitative and sequential palettes are generated from the same image and while varying some additional settings.
+
 ```{r example, results="hide"}
 library(imgpalr)
 
@@ -70,22 +74,34 @@ image_pal(x[1], type = "seq", saturation = c(0.2, 1),
   brightness = c(0.5, 1), seq_by = "hsv", plot = TRUE)
 ```
 
+### A dominant hue
+
+In this test image, hue varies over a narrow range. A sequential palette is sensible here, but not necessarily best sorted by hue. Doing so does still show a perceivable order to the colors, but it is much more difficult to discern. Sorting the palette first by saturation or brightness makes a much better sequential palette in this case.
+
 ```{r example2, results="hide", fig.height=2.08}
-# An image with one main hue;
-# sequential is most sensible, but not necessarily best sorted by hue
 image_pal(x[2], type = "seq", seq_by = "hsv", plot = TRUE)
 image_pal(x[2], type = "seq", seq_by = "svh", plot = TRUE)
 image_pal(x[2], type = "seq", seq_by = "vsh", plot = TRUE)
+```
 
-# An image with one several hues;
-# divergent is not sensible here, sequential should be by hue
+### Several hues
+
+Using an image with several prominent hues, a divergent palette is not sensible here. A sequential is likely best sorted by hue.
+
+Note in the second image below, you can also set `quantize = TRUE` to show a color-quantized reference thumbnail image based on the derived palette. This makes use of the `image_quantmap` function. Rather than only quantizing the image, it does so while also mapping the colors of any image to an arbitrary color palette based on nearest distances in RGB space.
+
+```{r example3, results="hide", fig.height=2.08}
+
 image_pal(x[3], type = "qual", brightness = c(0.4, 1), plot = TRUE)
-image_pal(x[3], type = "seq", bw = c(0.2, 1), saturation = c(0.2, 1), plot = TRUE)
+image_pal(x[3], type = "seq", bw = c(0.2, 1), saturation = c(0.2, 1), 
+          plot = TRUE, quantize = TRUE)
+```
+
+```{r cleanup, echo=FALSE}
+rm(image_pal, x) # why is x hanging around after rendering?
 ```
 
 Palette generation uses k-means clustering; results are different each time you call `image_pal`. If the palette you obtain does not feel right, even with fixed arguments you can run it again to obtain a different palette. Depending on the settings and the nature of the source image, it may change quite a bit. If you need a reproducible palette, set the `seed` argument. In the example above, the seed was set globally to avoid having to set it in each call to `image_pal`.
-
-Note: If you get a strange warning when using `image_pal` on specific images, with certain function arguments that looks like `Quick-TRANSfer stage steps exceeded maximum`, you can safely ignore this. It has to do with the k-means algorithm not converging in the number of max iterations it is set to. This can happen when there are too many colors in an image that are too close to one another and/or too many cluster centers (not the same as `n`), as far as I can tell. But it's a harmless warning. Anyhow, I will try to take care of it in the subsequent version soon.
 
 ## Related resources
 
@@ -94,3 +110,5 @@ There is also the [RImagePalette](https://CRAN.R-project.org/package=RImagePalet
 `imgpalr` was originally inspired by the [paletter](https://github.com/AndreaCirilloAC/paletter) package on GitHub. Both packages use k-means clustering to find key image colors, but take some different approaches in methods for assembling color palettes.
 
 The palette preview (without the thumbnail addition) is based off of `scales::show_col`, which is a convenient function for plotting palettes. You can also use `pals::pal.bands` to do the same using a different visual layout.
+
+If you want to directly manipulate the color properties of an image for its own sake rather than derive color palettes for other purposes, you can do so using the [magick](https://CRAN.R-project.org/package=magick) package, which provides bindings to the ImageMagick library.

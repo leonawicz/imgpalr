@@ -1,6 +1,6 @@
 Package: imgpalr
 Title: Create Color Palettes from Images
-Version: 0.1.1
+Version: 0.2.0
 Authors@R: person("Matthew", "Leonawicz", email = "matt_leonawicz@esource.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-9452-2771"))
 Description: Provides ability to create color palettes from image files. 
     It offers control over the type of color palette to derive from an image (qualitative, sequential or divergent) and other palette properties.
@@ -18,7 +18,6 @@ Suggests:
     testthat,
     covr,
     bmp,
-    png,
     jpeg,
     magick,
     lintr
@@ -28,4 +27,5 @@ Imports:
     downloader,
     tibble,
     magrittr,
-    dplyr
+    dplyr,
+    png

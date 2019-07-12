@@ -52,6 +52,12 @@ includes the source image thumbnail for visual reference.
 The examples below offer some typical considerations to make when
 deriving a color palette from an arbitrary image.
 
+### Three palette types
+
+In this first set of examples, divergent, qualitative and sequential
+palettes are generated from the same image and while varying some
+additional settings.
+
 ``` r
 library(imgpalr)
 
@@ -84,9 +90,15 @@ image_pal(x[1], type = "seq", saturation = c(0.2, 1),
 
 <img src="man/figures/README-example-3.png" width="100%" />
 
+### A dominant hue
+
+In this test image, hue varies over a narrow range. A sequential palette
+is sensible here, but not necessarily best sorted by hue. Doing so does
+still show a perceivable order to the colors, but it is much more
+difficult to discern. Sorting the palette first by saturation or
+brightness makes a much better sequential palette in this case.
+
 ``` r
-# An image with one main hue;
-# sequential is most sensible, but not necessarily best sorted by hue
 image_pal(x[2], type = "seq", seq_by = "hsv", plot = TRUE)
 ```
 
@@ -104,20 +116,31 @@ image_pal(x[2], type = "seq", seq_by = "vsh", plot = TRUE)
 
 <img src="man/figures/README-example2-3.png" width="100%" />
 
+### Several hues
+
+Using an image with several prominent hues, a divergent palette is not
+sensible here. A sequential is likely best sorted by hue.
+
+Note in the second image below, you can also set `quantize = TRUE` to
+show a color-quantized reference thumbnail image based on the derived
+palette. This makes use of the `image_quantmap` function. Rather than
+only quantizing the image, it does so while also mapping the colors of
+any image to an arbitrary color palette based on nearest distances in
+RGB space.
+
 ``` r
 
-# An image with one several hues;
-# divergent is not sensible here, sequential should be by hue
 image_pal(x[3], type = "qual", brightness = c(0.4, 1), plot = TRUE)
 ```
 
-<img src="man/figures/README-example2-4.png" width="100%" />
+<img src="man/figures/README-example3-1.png" width="100%" />
 
 ``` r
-image_pal(x[3], type = "seq", bw = c(0.2, 1), saturation = c(0.2, 1), plot = TRUE)
+image_pal(x[3], type = "seq", bw = c(0.2, 1), saturation = c(0.2, 1), 
+          plot = TRUE, quantize = TRUE)
 ```
 
-<img src="man/figures/README-example2-5.png" width="100%" />
+<img src="man/figures/README-example3-2.png" width="100%" />
 
 Palette generation uses k-means clustering; results are different each
 time you call `image_pal`. If the palette you obtain does not feel
@@ -126,16 +149,6 @@ different palette. Depending on the settings and the nature of the
 source image, it may change quite a bit. If you need a reproducible
 palette, set the `seed` argument. In the example above, the seed was set
 globally to avoid having to set it in each call to `image_pal`.
-
-Note: If you get a strange warning when using `image_pal` on specific
-images, with certain function arguments that looks like `Quick-TRANSfer
-stage steps exceeded maximum`, you can safely ignore this. It has to do
-with the k-means algorithm not converging in the number of max
-iterations it is set to. This can happen when there are too many colors
-in an image that are too close to one another and/or too many cluster
-centers (not the same as `n`), as far as I can tell. But it’s a harmless
-warning. Anyhow, I will try to take care of it in the subsequent version
-soon.
 
 ## Related resources
 
@@ -154,3 +167,8 @@ The palette preview (without the thumbnail addition) is based off of
 `scales::show_col`, which is a convenient function for plotting
 palettes. You can also use `pals::pal.bands` to do the same using a
 different visual layout.
+
+If you want to directly manipulate the color properties of an image for
+its own sake rather than derive color palettes for other purposes, you
+can do so using the [magick](https://CRAN.R-project.org/package=magick)
+package, which provides bindings to the ImageMagick library.

@@ -12,3 +12,5 @@
 ^\.travis\.yml$
 ^codecov\.yml$
 ^\.lintr$
+^CRAN-RELEASE$
+^README\.html$

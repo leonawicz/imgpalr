@@ -2,11 +2,16 @@ AppVeyor
 bmp
 BMP
 Codecov
+downloader
+ImageMagick
 jpeg
 jpg
 JPG
+magick
+paletter
 png
 pre
+quantized
 quantizing
 RBG
 Rdoc

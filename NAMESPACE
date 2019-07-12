@@ -2,6 +2,7 @@
 
 export(image_load)
 export(image_pal)
+export(image_quantmap)
 importFrom(grDevices,colorRampPalette)
 importFrom(grDevices,hsv)
 importFrom(grDevices,rgb)

@@ -9,5 +9,5 @@
 
 * This is a resubmission for a new release.
 
-* Imported `png` package in order to make example in help docs executable if they require loading an image file.
+* Imported `jpeg` package in order to make example in help docs executable if they require loading an image file.
 * There have been some other function, documentation and unit test additions since the original submission that are now present; specifically for `image_quantmap`. I have treated the examples the same as the CRAN recommendation for `image_pal` examples.

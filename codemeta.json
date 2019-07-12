@@ -78,15 +78,15 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "jpeg",
-      "name": "jpeg",
+      "identifier": "png",
+      "name": "png",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=jpeg"
+      "sameAs": "https://CRAN.R-project.org/package=png"
     },
     {
       "@type": "SoftwareApplication",
@@ -164,20 +164,20 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "png",
-      "name": "png",
+      "identifier": "jpeg",
+      "name": "jpeg",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=png"
+      "sameAs": "https://CRAN.R-project.org/package=jpeg"
     }
   ],
   "releaseNotes": "https://github.com/leonawicz/imgpalr/blob/master/NEWS.md",
   "readme": "https://github.com/leonawicz/imgpalr/blob/master/README.md",
-  "fileSize": "877.544KB",
+  "fileSize": "877.557KB",
   "contIntegration": [
     "https://travis-ci.org/leonawicz/imgpalr",
     "https://ci.appveyor.com/project/leonawicz/imgpalr",

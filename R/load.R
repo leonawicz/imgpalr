@@ -3,7 +3,7 @@
 #' Load PNG, JPG, BMP or GIF from disk or URL.
 #'
 #' The function will prompt you of the need to install a format-specific package if not installed and needed for
-#' the given \code{file} extension; \code{png}, \code{jpeg}, \code{bmp}, \code{magick} (for GIF).
+#' the given \code{file} extension; \code{png}, \code{bmp}, \code{magick} (for GIF). \code{jpeg} is already imported for purpose of running examples.
 #'
 #' @param file character, file name. A local file or URL. Extension must be one of png, jpg, jpeg, bmp or gif.
 #'
@@ -12,9 +12,9 @@
 #'
 #' @examples
 #' x <- paste0(system.file(package = "imgpalr"), "/blue-yellow.",
-#'   c("png", "jpg", "bmp", "gif"))
-#' if(require(png)) str(image_load(x[1]))
-#' if(require(jpeg)) str(image_load(x[2]))
+#'   c("jpg", "png", "bmp", "gif"))
+#' str(image_load(x[1]))
+#' if(require(png)) str(image_load(x[2]))
 #' if(require(bmp)) str(image_load(x[3]))
 #' if(require(magick)) str(image_load(x[4]))
 image_load <- function(file){

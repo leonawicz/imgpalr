@@ -18,7 +18,7 @@ Suggests:
     testthat,
     covr,
     bmp,
-    jpeg,
+    png,
     magick,
     lintr
 Language: en-US
@@ -28,4 +28,4 @@ Imports:
     tibble,
     magrittr,
     dplyr,
-    png
+    jpeg

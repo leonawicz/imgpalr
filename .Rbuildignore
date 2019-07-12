@@ -14,3 +14,4 @@
 ^\.lintr$
 ^CRAN-RELEASE$
 ^README\.html$
+^codemeta\.json$

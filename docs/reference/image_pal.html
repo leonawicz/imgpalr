@@ -84,7 +84,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">imgpalr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -124,7 +124,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create a color palette from an image</h1>
-    <small class="dont-index">Source: <a href='https://github.com/leonawicz/imgpalr/blob/master/R/imgpalr.R'><code>R/imgpalr.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/leonawicz/imgpalr/blob/master/R/pal.R'><code>R/pal.R</code></a></small>
     <div class="hidden name"><code>image_pal.Rd</code></div>
     </div>
 
@@ -137,7 +137,7 @@
     <pre class="usage"><span class='fu'>image_pal</span>(<span class='no'>file</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>9</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"qual"</span>, <span class='st'>"seq"</span>, <span class='st'>"div"</span>), <span class='kw'>bw</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>),
   <span class='kw'>brightness</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>saturation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>seq_by</span> <span class='kw'>=</span> <span class='st'>"hsv"</span>,
   <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>label_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>keep_asp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>label_color</span> <span class='kw'>=</span> <span class='st'>"#000000"</span>, <span class='kw'>keep_asp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>quantize</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -187,8 +187,16 @@
       <td><p>numeric, label size in plot.</p></td>
     </tr>
     <tr>
+      <th>label_color</th>
+      <td><p>text label color.</p></td>
+    </tr>
+    <tr>
       <th>keep_asp</th>
       <td><p>logical, adjust rectangles in plot to use the image aspect ratio.</p></td>
+    </tr>
+    <tr>
+      <th>quantize</th>
+      <td><p>logical, quantize the reference thumbnail image in the plot using the derived color palette. See <code>image_quantmap</code>.</p></td>
     </tr>
     </table>
     
@@ -229,19 +237,22 @@ It work better in cases where sequential palettes may contain several distinct h
 However, for example, palettes derived from an image with relatively little variation in hue may appear more sorted to the human eye if ordered by hue last using <code>"svh"</code> or <code>"vsh"</code>,
 depending on whether you want the palette to appear to transition more from lower saturation or lower brightness to the predominant hue.</p>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='image_quantmap.html'>image_quantmap</a></code></p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Only run in interactive R session</span>
-<span class='kw'>if</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()){
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>1</span>)
-  <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"imgpalr"</span>), <span class='st'>"/"</span>,
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"blue-yellow"</span>, <span class='st'>"purples"</span>, <span class='st'>"colors"</span>), <span class='st'>".jpg"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>1</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"imgpalr"</span>), <span class='st'>"/"</span>,
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"blue-yellow"</span>, <span class='st'>"purples"</span>, <span class='st'>"colors"</span>), <span class='st'>".png"</span>)
 
-  <span class='co'># Three palette types, one image</span>
-  <span class='co'># Focus on bright, saturated colors for divergent palette:</span>
-  <span class='fu'>image_pal</span>(<span class='no'>x</span>[<span class='fl'>1</span>], <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"div"</span>,
-    <span class='kw'>saturation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.75</span>, <span class='fl'>1</span>), <span class='kw'>brightness</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.75</span>, <span class='fl'>1</span>), <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
+<span class='co'># Three palette types, one image</span>
+<span class='co'># Focus on bright, saturated colors for divergent palette:</span>
+<span class='fu'>image_pal</span>(<span class='no'>x</span>[<span class='fl'>1</span>], <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"div"</span>,
+  <span class='kw'>saturation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.75</span>, <span class='fl'>1</span>), <span class='kw'>brightness</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.75</span>, <span class='fl'>1</span>), <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='image_pal-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; [1] "#4666A3" "#748CBA" "#A2B2D1" "#D0D8E8" "#FFFFFF" "#ECE7CB" "#DAD098"
+#&gt; [8] "#C7B865" "#B5A132"</div><div class='input'>
+</div><span class='co'># NOT RUN {</span>
   <span class='co'># Remove colors too close to black and white for qualitative palette:</span>
   <span class='fu'>image_pal</span>(<span class='no'>x</span>[<span class='fl'>1</span>], <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"qual"</span>, <span class='kw'>bw</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.25</span>, <span class='fl'>0.9</span>), <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
@@ -258,8 +269,11 @@ depending on whether you want the palette to appear to transition more from lowe
   <span class='co'># An image with one several hues;</span>
   <span class='co'># divergent is not sensible here, sequential should be by hue</span>
   <span class='fu'>image_pal</span>(<span class='no'>x</span>[<span class='fl'>3</span>], <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"qual"</span>, <span class='kw'>brightness</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.4</span>, <span class='fl'>1</span>), <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-  <span class='fu'>image_pal</span>(<span class='no'>x</span>[<span class='fl'>3</span>], <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"seq"</span>, <span class='kw'>bw</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.2</span>, <span class='fl'>1</span>), <span class='kw'>saturation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.2</span>, <span class='fl'>1</span>), <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-}</div></pre>
+
+  <span class='co'># You can also quantize the reference image using the derived palette</span>
+  <span class='fu'>image_pal</span>(<span class='no'>x</span>[<span class='fl'>3</span>], <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"seq"</span>, <span class='kw'>bw</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.2</span>, <span class='fl'>1</span>), <span class='kw'>saturation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.2</span>, <span class='fl'>1</span>),
+  <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>quantize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -275,6 +289,8 @@ depending on whether you want the palette to appear to transition more from lowe
       <li><a href="#choosing-appropriate-palette-type">Choosing appropriate palette type</a></li>
 
       <li><a href="#sorting-sequential-palettes">Sorting sequential palettes</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

@@ -9,4 +9,8 @@
 
 * This is a resubmission for a new release.
 
-* The function examples for `image_pal` and `image_quantmap` have been simplified and tweaked to execute faster where possible. Redundancies have been removed where examples do not need to include several similar function calls back to back for all three palette types; this yields the largest improvement in reducing execution times. Some unit tests have been updated as well.
+The following changes have reduced the execution time of examples:
+
+* The function examples for `image_pal` and `image_quantmap` have been simplified and tweaked to execute faster where possible.
+* Redundancies have been removed where examples do not need to include several similar function calls back to back for all three palette types.
+* The argument `k` has been added to allow control over the number of k-means cluster centers considered on initial image processing step.

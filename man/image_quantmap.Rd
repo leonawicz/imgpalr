@@ -38,14 +38,8 @@ This function returns the new RGB array. You can plot a preview just like with \
 \examples{
 set.seed(1)
 x <- system.file("blue-yellow.jpg", package = "imgpalr")
-pal <- image_pal(x, type = "qual", saturation = c(0.5, 1),
-  brightness = c(0.5, 1))
-a <- image_quantmap(x, pal, plot = TRUE)
-\donttest{
-pal <- image_pal(x, type = "qual")
-a <- image_quantmap(x, pal, plot = TRUE)
+pal <- image_pal(x, type = "div")
 a <- image_quantmap(x, pal, plot = TRUE, show_pal = FALSE)
-}
 }
 \seealso{
 \code{\link{image_pal}}

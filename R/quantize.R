@@ -21,14 +21,8 @@
 #' @examples
 #' set.seed(1)
 #' x <- system.file("blue-yellow.jpg", package = "imgpalr")
-#' pal <- image_pal(x, type = "qual", saturation = c(0.5, 1),
-#'   brightness = c(0.5, 1))
-#' a <- image_quantmap(x, pal, plot = TRUE)
-#' \donttest{
-#' pal <- image_pal(x, type = "qual")
-#' a <- image_quantmap(x, pal, plot = TRUE)
+#' pal <- image_pal(x, type = "div")
 #' a <- image_quantmap(x, pal, plot = TRUE, show_pal = FALSE)
-#' }
 image_quantmap <- function(file, pal, plot = FALSE, show_pal = TRUE, labels = TRUE,
                            label_size = 1, label_color = "#000000", keep_asp = TRUE){
   a <- if(is.character(file)) image_load(file) else file

@@ -5,6 +5,8 @@ test_that("image_load loads file", {
     c("png", "jpg", "bmp", "gif"))
   url <- "https://raw.githubusercontent.com/leonawicz/imgpalr/master/inst/"
 
+  expect_error(image_load("a"), "`file` must be PNG, JPG, GIF, or BMP.")
+
   if(require(png)){
     expect_is(image_load(x[1]), "array")
     expect_is(image_load(paste0(url, basename(x[1]))), "array")

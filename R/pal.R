@@ -59,26 +59,13 @@
 #'   saturation = c(0.75, 1), brightness = c(0.75, 1), plot = TRUE)
 #'
 #' \donttest{
-#' # Remove colors too close to black and white for qualitative palette:
-#' image_pal(x[1], type = "qual", bw = c(0.25, 0.9), plot = TRUE)
-#'
 #' # A challenging sequential mapping
 #' image_pal(x[1], type = "seq", saturation = c(0.2, 1),
 #'   brightness = c(0.5, 1), seq_by = "hsv", plot = TRUE)
 #'
 #' # An image with one main hue;
 #' # sequential is most sensible, but not necessarily best sorted by hue
-#' image_pal(x[2], type = "seq", seq_by = "hsv", plot = TRUE)
-#' image_pal(x[2], type = "seq", seq_by = "svh", plot = TRUE)
-#' image_pal(x[2], type = "seq", seq_by = "vsh", plot = TRUE)
-#'
-#' # An image with one several hues;
-#' # divergent is not sensible here, sequential should be by hue
-#' image_pal(x[3], type = "qual", brightness = c(0.4, 1), plot = TRUE)
-#'
-#' # You can also quantize the reference image using the derived palette
-#' image_pal(x[3], type = "seq", bw = c(0.2, 1), saturation = c(0.2, 1),
-#'   plot = TRUE, quantize = TRUE)
+#' image_pal(x[2], type = "seq", n = 3, seq_by = "svh", plot = TRUE)
 #' }
 image_pal <- function(file, n = 9, type = c("qual", "seq", "div"), bw = c(0, 1),
                       brightness = c(0, 1), saturation = c(0, 1), seq_by = "hsv", seed = NULL,

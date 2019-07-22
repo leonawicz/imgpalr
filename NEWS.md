@@ -1,3 +1,7 @@
+# imgpalr 0.2.1
+
+* Examples and unit tests updated for CRAN release.
+
 # imgpalr 0.2.0
 
 * Added `image_quantmap` function and a `quantize` argument to `image_pal` for the preview thumbnail image.

@@ -5,9 +5,8 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 1 notes
 
 * This is a resubmission for a new release.
 
-* Imported `jpeg` package in order to make example in help docs executable if they require loading an image file.
-* There have been some other function, documentation and unit test additions since the original submission that are now present; specifically for `image_quantmap`. I have treated the examples the same as the CRAN recommendation for `image_pal` examples.
+* The function examples for `image_pal` and `image_quantmap` have been simplified and tweaked to execute faster where possible. Redundancies have been removed where examples do not need to include several similar function calls back to back for all three palette types; this yields the largest improvement in reducing execution times. Some unit tests have been updated as well.

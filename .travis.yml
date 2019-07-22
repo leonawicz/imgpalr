@@ -13,4 +13,4 @@ addons:
       - cargo
 
 after_success:
-  - Rscript -e 'covr::codecov()'
+  - Rscript -e 'covr::codecov(line_exclusions = list("R/load.R" = c(32:33, 39:40, 46:47, 53:54)))'

@@ -243,19 +243,15 @@ depending on whether you want the palette to appear to transition more from lowe
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>set.seed(1)
-x <- "blue-yellow.jpg", system.file(package = "imgpalr")
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>1</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"blue-yellow.jpg"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"imgpalr"</span>)
 
-# Focus on bright, saturated colors for divergent palette:
-image_pal(x, n = 3, type = "div",
-  saturation = c(0.75, 1), brightness = c(0.75, 1), plot = TRUE)
-
-</div><div class='output co'>#&gt; <span class='error'>Error: &lt;text&gt;:2:23: unexpected ','</span>
-#&gt; <span class='error'>1: set.seed(1)</span>
-#&gt; <span class='error'>2: x &lt;- "blue-yellow.jpg",</span>
-#&gt; <span class='error'>                         ^</span></div><div class='input'><span class='co'># A challenging sequential mapping</span>
+<span class='co'># Focus on bright, saturated colors for divergent palette:</span>
+<span class='fu'>image_pal</span>(<span class='no'>x</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"div"</span>,
+  <span class='kw'>saturation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.75</span>, <span class='fl'>1</span>), <span class='kw'>brightness</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.75</span>, <span class='fl'>1</span>), <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='image_pal-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; [1] "#B5A335" "#FFFFFF" "#4966A3"</div><div class='input'>
+</div><div class='input'><span class='co'># A challenging sequential mapping</span>
 <span class='fu'>image_pal</span>(<span class='no'>x</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"seq"</span>, <span class='kw'>saturation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.2</span>, <span class='fl'>1</span>),
-  <span class='kw'>brightness</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.5</span>, <span class='fl'>1</span>), <span class='kw'>seq_by</span> <span class='kw'>=</span> <span class='st'>"hsv"</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in gsub(".*(\\..*$)", "\\1", file): object 'x' not found</span></div></pre>
+  <span class='kw'>brightness</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.5</span>, <span class='fl'>1</span>), <span class='kw'>seq_by</span> <span class='kw'>=</span> <span class='st'>"hsv"</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] "#B5AA53" "#667E9E" "#354B8D"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

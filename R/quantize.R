@@ -4,9 +4,13 @@
 #'
 #' The palette \code{pal} does not need to be related to the image colors. Each pixel will be assigned to whichever color in \code{pal} that it is nearest to in RGB space.
 #' This function returns the new RGB array. You can plot a preview just like with \code{image_pal} using \code{plot = TRUE}.
+#' The number of k-means centers \code{k} is for binning image colors prior to mapping the palette \code{pal}.
+#' It is limited by the number of unique colors in the image. Larger \code{k} provides more binned distances between image colors and palette colors,
+#' but takes longer to run.
 #'
 #' @param file if character, file path or URL to an image. You can also provide an RGB array from an already loaded image file.
 #' @param pal character, vector of hex colors, the color palette used to quantize the image colors.
+#' @param k integer, the number of k-means cluster centers to consider in the image. See details.
 #' @param plot logical, plot the palette with quantized image reference thumbnail. If \code{FALSE}, only return the RGB array.
 #' @param show_pal logical, show the palette like with \code{image_pal}. If \code{FALSE}, plot only the image; all subsequent arguments ignored.
 #' @param labels logical, show hex color values in plot.
@@ -20,17 +24,18 @@
 #'
 #' @examples
 #' x <- system.file("blue-yellow.jpg", package = "imgpalr")
-#' pal <- image_pal(x, n = 3, type = "div", seed = 1)
-#' a <- image_quantmap(x, pal)
-#' class(a)
-image_quantmap <- function(file, pal, plot = FALSE, show_pal = TRUE, labels = TRUE,
-                           label_size = 1, label_color = "#000000", keep_asp = TRUE){
+#' pal <- c("#191970", "#63B8FF", "#FFFF00")
+#' a <- image_quantmap(x, pal, k = 7, plot = TRUE)
+#' str(a)
+image_quantmap <- function(file, pal, k = 100, plot = FALSE, show_pal = TRUE,
+                           labels = TRUE, label_size = 1, label_color = "#000000",
+                           keep_asp = TRUE){
   a <- if(is.character(file)) image_load(file) else file
   dm <- dim(a)
   f <- function(x, i) as.numeric(x[, , i])
   d <- tibble::tibble(red = f(a, 1), green = f(a, 2), blue = f(a, 3))
   nmax <- nrow(dplyr::distinct(d))
-  x <- suppressWarnings(kmeans(d, min(100, nmax), 30))
+  x <- suppressWarnings(kmeans(d, min(k, nmax), 30))
   d <- tibble::as_tibble(x$centers[x$cluster, ]) %>% dplyr::mutate(id = x$cluster)
   d2 <- dplyr::distinct(d)
   col_map <- tibble::as_tibble(t(grDevices::col2rgb(pal) / 255))

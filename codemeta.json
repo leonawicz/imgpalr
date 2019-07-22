@@ -177,7 +177,7 @@
   ],
   "releaseNotes": "https://github.com/leonawicz/imgpalr/blob/master/NEWS.md",
   "readme": "https://github.com/leonawicz/imgpalr/blob/master/README.md",
-  "fileSize": "877.256KB",
+  "fileSize": "880.457KB",
   "contIntegration": [
     "https://travis-ci.org/leonawicz/imgpalr",
     "https://ci.appveyor.com/project/leonawicz/imgpalr",

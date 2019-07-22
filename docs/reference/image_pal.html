@@ -134,9 +134,10 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>image_pal</span>(<span class='no'>file</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>9</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"qual"</span>, <span class='st'>"seq"</span>, <span class='st'>"div"</span>), <span class='kw'>bw</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>),
-  <span class='kw'>brightness</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>saturation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>seq_by</span> <span class='kw'>=</span> <span class='st'>"hsv"</span>,
-  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>label_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+    <pre class="usage"><span class='fu'>image_pal</span>(<span class='no'>file</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>9</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"qual"</span>, <span class='st'>"seq"</span>, <span class='st'>"div"</span>), <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>bw</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>brightness</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>saturation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>),
+  <span class='kw'>seq_by</span> <span class='kw'>=</span> <span class='st'>"hsv"</span>, <span class='kw'>div_center</span> <span class='kw'>=</span> <span class='st'>"#FFFFFF"</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>label_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>label_color</span> <span class='kw'>=</span> <span class='st'>"#000000"</span>, <span class='kw'>keep_asp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>quantize</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -155,6 +156,10 @@
       <td><p>character, type of palette: qualitative, sequential or divergent (<code>"qual"</code>, <code>"seq"</code>, or <code>"div"</code>).</p></td>
     </tr>
     <tr>
+      <th>k</th>
+      <td><p>integer, the number of k-means cluster centers to consider in the image. See details.</p></td>
+    </tr>
+    <tr>
       <th>bw</th>
       <td><p>a numeric vector of length two giving the lower and upper quantiles to trim trim near-black and near-white colors in RGB space.</p></td>
     </tr>
@@ -169,6 +174,10 @@
     <tr>
       <th>seq_by</th>
       <td><p>character, sort sequential palette by HSV dimensions in a specific order, e.g., <code>"hsv"</code>, <code>"svh"</code>. See details.</p></td>
+    </tr>
+    <tr>
+      <th>div_center</th>
+      <td><p>character, color used for divergent palette center, defaults to white.</p></td>
     </tr>
     <tr>
       <th>seed</th>
@@ -212,6 +221,10 @@ Color is a multi-dimensional property; any reduction to a a one dimensional colo
 This function does a decent job of creating qualitative, sequential and divergent palettes from images, but additional tweaking of function arguments is needed on a case by case basis.
 This can include trimming the extreme values of the color distribution in terms of brightness, saturation and presence of near-black/white colors as pre-processing steps.
 There is also variation in possible palettes from a given image, depending on the image complexity and other properties, though you can set the random seed for reproducibility.</p>
+<p>The number of k-means centers <code>k</code> defines the maximum number of unique colors to consider in the image for color binning prior to palette construction.
+This is different from <code>n</code>, the number of colors are desired in the derived palette. It is limited by the number of unique colors in the image.
+Larger <code>k</code> may allow for better palette construction under some conditions, but takes longer to run.
+<code>k</code> applies to sequential and qualitative palettes, but not divergent palettes.</p>
     
     <h2 class="hasAnchor" id="trimming-color-distribution"><a class="anchor" href="#trimming-color-distribution"></a>Trimming color distribution</h2>
 
@@ -250,8 +263,8 @@ depending on whether you want the palette to appear to transition more from lowe
 <span class='fu'>image_pal</span>(<span class='no'>x</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"div"</span>,
   <span class='kw'>saturation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.75</span>, <span class='fl'>1</span>), <span class='kw'>brightness</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.75</span>, <span class='fl'>1</span>), <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='image_pal-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; [1] "#B5A335" "#FFFFFF" "#4966A3"</div><div class='input'>
 </div><div class='input'><span class='co'># A challenging sequential mapping</span>
-<span class='fu'>image_pal</span>(<span class='no'>x</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"seq"</span>, <span class='kw'>saturation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.2</span>, <span class='fl'>1</span>),
-  <span class='kw'>brightness</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.5</span>, <span class='fl'>1</span>), <span class='kw'>seq_by</span> <span class='kw'>=</span> <span class='st'>"hsv"</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] "#B5AA53" "#667E9E" "#354B8D"</div></pre>
+<span class='fu'>image_pal</span>(<span class='no'>x</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"seq"</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>saturation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.2</span>, <span class='fl'>1</span>),
+  <span class='kw'>brightness</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.5</span>, <span class='fl'>1</span>), <span class='kw'>seq_by</span> <span class='kw'>=</span> <span class='st'>"hsv"</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] "#A9AE6D" "#6C859E" "#476194"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

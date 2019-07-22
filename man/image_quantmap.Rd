@@ -4,7 +4,7 @@
 \alias{image_quantmap}
 \title{Quantize an image using an existing color palette}
 \usage{
-image_quantmap(file, pal, plot = FALSE, show_pal = TRUE,
+image_quantmap(file, pal, k = 100, plot = FALSE, show_pal = TRUE,
   labels = TRUE, label_size = 1, label_color = "#000000",
   keep_asp = TRUE)
 }
@@ -12,6 +12,8 @@ image_quantmap(file, pal, plot = FALSE, show_pal = TRUE,
 \item{file}{if character, file path or URL to an image. You can also provide an RGB array from an already loaded image file.}
 
 \item{pal}{character, vector of hex colors, the color palette used to quantize the image colors.}
+
+\item{k}{integer, the number of k-means cluster centers to consider in the image. See details.}
 
 \item{plot}{logical, plot the palette with quantized image reference thumbnail. If \code{FALSE}, only return the RGB array.}
 
@@ -34,12 +36,15 @@ Quantize image colors by mapping all pixels to the nearest color in RGB space, r
 \details{
 The palette \code{pal} does not need to be related to the image colors. Each pixel will be assigned to whichever color in \code{pal} that it is nearest to in RGB space.
 This function returns the new RGB array. You can plot a preview just like with \code{image_pal} using \code{plot = TRUE}.
+The number of k-means centers \code{k} is for binning image colors prior to mapping the palette \code{pal}.
+It is limited by the number of unique colors in the image. Larger \code{k} provides more binned distances between image colors and palette colors,
+but takes longer to run.
 }
 \examples{
 x <- system.file("blue-yellow.jpg", package = "imgpalr")
-pal <- image_pal(x, n = 3, type = "div", seed = 1)
-a <- image_quantmap(x, pal)
-class(a)
+pal <- c("#191970", "#63B8FF", "#FFFF00")
+a <- image_quantmap(x, pal, k = 7, plot = TRUE)
+str(a)
 }
 \seealso{
 \code{\link{image_pal}}

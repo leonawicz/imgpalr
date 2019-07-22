@@ -134,7 +134,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>image_quantmap</span>(<span class='no'>file</span>, <span class='no'>pal</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>show_pal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+    <pre class="usage"><span class='fu'>image_quantmap</span>(<span class='no'>file</span>, <span class='no'>pal</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>show_pal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>label_size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>label_color</span> <span class='kw'>=</span> <span class='st'>"#000000"</span>,
   <span class='kw'>keep_asp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
@@ -148,6 +148,10 @@
     <tr>
       <th>pal</th>
       <td><p>character, vector of hex colors, the color palette used to quantize the image colors.</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>integer, the number of k-means cluster centers to consider in the image. See details.</p></td>
     </tr>
     <tr>
       <th>plot</th>
@@ -182,7 +186,10 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The palette <code>pal</code> does not need to be related to the image colors. Each pixel will be assigned to whichever color in <code>pal</code> that it is nearest to in RGB space.
-This function returns the new RGB array. You can plot a preview just like with <code>image_pal</code> using <code>plot = TRUE</code>.</p>
+This function returns the new RGB array. You can plot a preview just like with <code>image_pal</code> using <code>plot = TRUE</code>.
+The number of k-means centers <code>k</code> is for binning image colors prior to mapping the palette <code>pal</code>.
+It is limited by the number of unique colors in the image. Larger <code>k</code> provides more binned distances between image colors and palette colors,
+but takes longer to run.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -191,9 +198,8 @@ This function returns the new RGB array. You can plot a preview just like with <
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"blue-yellow.jpg"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"imgpalr"</span>)
-<span class='no'>pal</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='image_pal.html'>image_pal</a></span>(<span class='no'>x</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"div"</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='fu'>image_quantmap</span>(<span class='no'>x</span>, <span class='no'>pal</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>a</span>)</div><div class='output co'>#&gt; [1] "array"</div></pre>
+<span class='no'>pal</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"#191970"</span>, <span class='st'>"#63B8FF"</span>, <span class='st'>"#FFFF00"</span>)
+<span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='fu'>image_quantmap</span>(<span class='no'>x</span>, <span class='no'>pal</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='image_quantmap-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/str'>str</a></span>(<span class='no'>a</span>)</div><div class='output co'>#&gt;  num [1:317, 1:400, 1:3] 0.098 0.098 0.098 0.098 0.098 ...</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

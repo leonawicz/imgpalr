@@ -92,9 +92,7 @@
     
     
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<div id="imgpalr" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#imgpalr" class="anchor"></a>imgpalr <img src="reference/figures/logo.png" style="margin-left:10px;margin-bottom:5px;" width="120" align="right">
+<section id="imgpalr" class="level1"><div class="page-header"><h1>imgpalr <img src="reference/figures/logo.png" style="margin-left:10px;margin-bottom:5px;" width="120" align="right">
 </h1></div>
 <p><strong>Author:</strong> <a href="https://leonawicz.github.io/blog/">Matthew Leonawicz</a> <a href="https://orcid.org/0000-0001-9452-2771" target="orcid.widget"> <image class="orcid" src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" height="16"></image></a> <br><strong>License:</strong> <a href="https://opensource.org/licenses/MIT">MIT</a><br></p>
 <p><a href="https://cran.r-project.org/package=imgpalr"><img src="http://www.r-pkg.org/badges/version/imgpalr" alt="CRAN status"></a> <a href="https://cran.r-project.org/package=imgpalr"><img src="http://cranlogs.r-pkg.org/badges/grand-total/imgpalr" alt="CRAN downloads"></a> <a href="http://www.rdocumentation.org/packages/imgpalr"><img src="http://www.rdocumentation.org/badges/version/imgpalr" alt="Rdoc"></a> <a href="https://travis-ci.org/leonawicz/imgpalr"><img src="https://travis-ci.org/leonawicz/imgpalr.svg?branch=master" alt="Travis build status"></a> <a href="https://ci.appveyor.com/project/leonawicz/imgpalr"><img src="https://ci.appveyor.com/api/projects/status/github/leonawicz/imgpalr?branch=master&amp;svg=true" alt="AppVeyor build status"></a> <a href="https://codecov.io/gh/leonawicz/imgpalr?branch=master"><img src="https://codecov.io/gh/leonawicz/imgpalr/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></p>
@@ -105,21 +103,14 @@
 <li>Near-black or near-white colors can be trimmed in RGB space independent of trimming brightness or saturation distributions in HSV space.</li>
 <li>Creating sequential palettes also offers control over the order of HSV color dimensions to sort by.</li>
 </ul>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<section id="installation" class="level2"><h2>Installation</h2>
 <p>You can install the development version of <code>imgpalr</code> from GitHub with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># install.packages("remotes")</span></a>
 <a class="sourceLine" id="cb1-2" title="2">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"leonawicz/imgpalr"</span>)</a></code></pre></div>
-</div>
-<div id="examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h2>
+</section><section id="examples" class="level2"><h2>Examples</h2>
 <p>The main function is <code>image_pal</code>. It accepts PNG, JPG, BMP or GIF (first frame) images either from disk or URL. It returns a vector of colors defining a palette based on the image and your other function arguments. You can also set <code>plot = TRUE</code> to plot a preview of the palette, which includes the source image thumbnail for visual reference.</p>
 <p>The examples below offer some typical considerations to make when deriving a color palette from an arbitrary image.</p>
-<div id="three-palette-types" class="section level3">
-<h3 class="hasAnchor">
-<a href="#three-palette-types" class="anchor"></a>Three palette types</h3>
+<section id="three-palette-types" class="level3"><h3>Three palette types</h3>
 <p>In this first set of examples, divergent, qualitative and sequential palettes are generated from the same image and while varying some additional settings.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(imgpalr)</a>
 <a class="sourceLine" id="cb2-2" title="2"></a>
@@ -141,10 +132,7 @@
 <a class="sourceLine" id="cb4-3" title="3"><span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">1</span>], <span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">saturation =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.2</span>, <span class="dv">1</span>),</a>
 <a class="sourceLine" id="cb4-4" title="4">  <span class="dt">brightness =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.5</span>, <span class="dv">1</span>), <span class="dt">seq_by =</span> <span class="st">"hsv"</span>, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-example-3.png" width="100%"></p>
-</div>
-<div id="a-dominant-hue" class="section level3">
-<h3 class="hasAnchor">
-<a href="#a-dominant-hue" class="anchor"></a>A dominant hue</h3>
+</section><section id="a-dominant-hue" class="level3"><h3>A dominant hue</h3>
 <p>In this test image, hue varies over a narrow range. A sequential palette is sensible here, but not necessarily best sorted by hue. Doing so does still show a perceivable order to the colors, but it is much more difficult to discern. Sorting the palette first by saturation or brightness makes a much better sequential palette in this case.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">2</span>], <span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">seq_by =</span> <span class="st">"hsv"</span>, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-example2-1.png" width="100%"></p>
@@ -152,10 +140,7 @@
 <p><img src="reference/figures/README-example2-2.png" width="100%"></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="reference/image_pal.html">image_pal</a></span>(x[<span class="dv">2</span>], <span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">seq_by =</span> <span class="st">"vsh"</span>, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-example2-3.png" width="100%"></p>
-</div>
-<div id="several-hues" class="section level3">
-<h3 class="hasAnchor">
-<a href="#several-hues" class="anchor"></a>Several hues</h3>
+</section><section id="several-hues" class="level3"><h3>Several hues</h3>
 <p>Using an image with several prominent hues, a divergent palette is not sensible here. A sequential is likely best sorted by hue.</p>
 <p>Note in the second image below, you can also set <code>quantize = TRUE</code> to show a color-quantized reference thumbnail image based on the derived palette. This makes use of the <code>image_quantmap</code> function. Rather than only quantizing the image, it does so while also mapping the colors of any image to an arbitrary color palette based on nearest distances in RGB space.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"></a>
@@ -165,18 +150,13 @@
 <a class="sourceLine" id="cb9-2" title="2">          <span class="dt">plot =</span> <span class="ot">TRUE</span>, <span class="dt">quantize =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-example3-2.png" width="100%"></p>
 <p>Palette generation uses k-means clustering; results are different each time you call <code>image_pal</code>. If the palette you obtain does not feel right, even with fixed arguments you can run it again to obtain a different palette. Depending on the settings and the nature of the source image, it may change quite a bit. If you need a reproducible palette, set the <code>seed</code> argument. In the example above, the seed was set globally to avoid having to set it in each call to <code>image_pal</code>.</p>
-</div>
-</div>
-<div id="related-resources" class="section level2">
-<h2 class="hasAnchor">
-<a href="#related-resources" class="anchor"></a>Related resources</h2>
+</section></section><section id="related-resources" class="level2"><h2>Related resources</h2>
 <p>There is also the <a href="https://CRAN.R-project.org/package=RImagePalette">RImagePalette</a> package on CRAN, which uses the median cut algorithm for finding they dominant colors in an image.</p>
 <p><code>imgpalr</code> was originally inspired by the <a href="https://github.com/AndreaCirilloAC/paletter">paletter</a> package on GitHub. Both packages use k-means clustering to find key image colors, but take some different approaches in methods for assembling color palettes.</p>
 <p>The palette preview (without the thumbnail addition) is based off of <code><a href="https://www.rdocumentation.org/packages/scales/topics/show_col">scales::show_col</a></code>, which is a convenient function for plotting palettes. You can also use <code><a href="https://www.rdocumentation.org/packages/pals/topics/pal.bands">pals::pal.bands</a></code> to do the same using a different visual layout.</p>
 <p>If you want to directly manipulate the color properties of an image for its own sake rather than derive color palettes for other purposes, you can do so using the <a href="https://CRAN.R-project.org/package=magick">magick</a> package, which provides bindings to the ImageMagick library.</p>
+</section></section>
 </div>
-</div>
-  </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <div class="links">

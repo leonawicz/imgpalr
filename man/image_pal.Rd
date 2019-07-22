@@ -79,22 +79,16 @@ depending on whether you want the palette to appear to transition more from lowe
 
 \examples{
 set.seed(1)
-x <- paste0(system.file(package = "imgpalr"), "/",
-  c("blue-yellow", "purples", "colors"), ".jpg")
+x <- "blue-yellow.jpg", system.file(package = "imgpalr")
 
-# Three palette types, one image
 # Focus on bright, saturated colors for divergent palette:
-image_pal(x[1], type = "div",
+image_pal(x, n = 3, type = "div",
   saturation = c(0.75, 1), brightness = c(0.75, 1), plot = TRUE)
 
 \donttest{
 # A challenging sequential mapping
-image_pal(x[1], type = "seq", saturation = c(0.2, 1),
-  brightness = c(0.5, 1), seq_by = "hsv", plot = TRUE)
-
-# An image with one main hue;
-# sequential is most sensible, but not necessarily best sorted by hue
-image_pal(x[2], type = "seq", n = 3, seq_by = "svh", plot = TRUE)
+image_pal(x, n = 3, type = "seq", saturation = c(0.2, 1),
+  brightness = c(0.5, 1), seq_by = "hsv", plot = FALSE)
 }
 }
 \seealso{

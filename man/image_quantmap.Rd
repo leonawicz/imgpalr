@@ -36,10 +36,10 @@ The palette \code{pal} does not need to be related to the image colors. Each pix
 This function returns the new RGB array. You can plot a preview just like with \code{image_pal} using \code{plot = TRUE}.
 }
 \examples{
-set.seed(1)
 x <- system.file("blue-yellow.jpg", package = "imgpalr")
-pal <- image_pal(x, type = "div")
-a <- image_quantmap(x, pal, plot = TRUE, show_pal = FALSE)
+pal <- image_pal(x, n = 3, type = "div", seed = 1)
+a <- image_quantmap(x, pal)
+class(a)
 }
 \seealso{
 \code{\link{image_pal}}

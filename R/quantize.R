@@ -19,10 +19,10 @@
 #' @seealso \code{\link{image_pal}}
 #'
 #' @examples
-#' set.seed(1)
 #' x <- system.file("blue-yellow.jpg", package = "imgpalr")
-#' pal <- image_pal(x, type = "div")
-#' a <- image_quantmap(x, pal, plot = TRUE, show_pal = FALSE)
+#' pal <- image_pal(x, n = 3, type = "div", seed = 1)
+#' a <- image_quantmap(x, pal)
+#' class(a)
 image_quantmap <- function(file, pal, plot = FALSE, show_pal = TRUE, labels = TRUE,
                            label_size = 1, label_color = "#000000", keep_asp = TRUE){
   a <- if(is.character(file)) image_load(file) else file

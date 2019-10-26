@@ -7,6 +7,8 @@
 # imgpalr 0.2.1
 
 * Examples and unit tests updated for CRAN release.
+* Added `k` argument to `image_pal` and `image_quantmap` for control over the number of k-means clusters during initial image processing.
+* Added `div_center` so that an alternative color can be specified for the midpoint of divergent palettes.
 
 # imgpalr 0.2.0
 

@@ -4,6 +4,7 @@ BMP
 Codecov
 downloader
 fi
+Github
 ImageMagick
 jpeg
 jpg
@@ -16,6 +17,5 @@ pre
 quantized
 quantizing
 RBG
-Rdoc
 reproducibility
 RImagePalette

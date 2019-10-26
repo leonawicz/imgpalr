@@ -11,6 +11,11 @@
 #' This can include trimming the extreme values of the color distribution in terms of brightness, saturation and presence of near-black/white colors as pre-processing steps.
 #' There is also variation in possible palettes from a given image, depending on the image complexity and other properties, though you can set the random seed for reproducibility.
 #'
+#' The number of k-means centers \code{k} defines the maximum number of unique colors to consider in the image for color binning prior to palette construction.
+#' This is different from \code{n}, the number of colors are desired in the derived palette. It is limited by the number of unique colors in the image.
+#' Larger \code{k} may allow for better palette construction under some conditions, but takes longer to run.
+#' \code{k} applies to sequential and qualitative palettes, but not divergent palettes.
+#'
 #' @section Trimming color distribution:
 #' Some pre-processing can be done to limit undesirable colors from ending up in a palette.
 #' \code{bw} specifically drops near-black and near-white colors as soon as the image is loaded by looking at the average values in RGB space.
@@ -32,10 +37,12 @@
 #' @param file character, file path or URL to an image.
 #' @param n integer, number of colors.
 #' @param type character, type of palette: qualitative, sequential or divergent (\code{"qual"}, \code{"seq"}, or \code{"div"}).
+#' @param k integer, the number of k-means cluster centers to consider in the image. See details.
 #' @param bw a numeric vector of length two giving the lower and upper quantiles to trim trim near-black and near-white colors in RGB space.
 #' @param brightness as above, trim possible colors based on brightness in HSV space.
 #' @param saturation as above, trim possible colors based on saturation in HSV space.
 #' @param seq_by character, sort sequential palette by HSV dimensions in a specific order, e.g., \code{"hsv"}, \code{"svh"}. See details.
+#' @param div_center character, color used for divergent palette center, defaults to white.
 #' @param seed numeric, set the seed for reproducible results.
 #' @param plot logical, plot the palette.
 #' @param labels logical, show hex color values in plot.
@@ -58,22 +65,23 @@
 #'
 #' \donttest{
 #' # A challenging sequential mapping
-#' image_pal(x, n = 3, type = "seq", saturation = c(0.2, 1),
+#' image_pal(x, n = 3, type = "seq", k = 3, saturation = c(0.2, 1),
 #'   brightness = c(0.5, 1), seq_by = "hsv", plot = FALSE)
 #' }
-image_pal <- function(file, n = 9, type = c("qual", "seq", "div"), bw = c(0, 1),
-                      brightness = c(0, 1), saturation = c(0, 1), seq_by = "hsv", seed = NULL,
-                      plot = FALSE, labels = TRUE, label_size = 1, label_color = "#000000",
-                      keep_asp = TRUE, quantize = FALSE){
+image_pal <- function(file, n = 9, type = c("qual", "seq", "div"), k = 100,
+                      bw = c(0, 1), brightness = c(0, 1), saturation = c(0, 1),
+                      seq_by = "hsv", div_center = "#FFFFFF", seed = NULL,
+                      plot = FALSE, labels = TRUE, label_size = 1,
+                      label_color = "#000000", keep_asp = TRUE, quantize = FALSE){
   if(is.numeric(seed)) set.seed(seed)
   type <- match.arg(type)
   a <- image_load(file)
   d <- .filter_colors(a, bw, brightness, saturation)
   if(type == "div"){
-    x <- .to_div_pal(d[, c("h", "s", "v")], n)
+    x <- .to_div_pal(d[, c("h", "s", "v")], n, div_center)
   } else {
     nmax <- nrow(dplyr::distinct_at(d, c("h", "s", "v")))
-    x <- km(d[, c("h", "s", "v")], min(10 * n, nmax)) %>% tibble::as_tibble() %>%
+    x <- km(d[, c("h", "s", "v")], min(k, nmax)) %>% tibble::as_tibble() %>%
       dplyr::mutate(hex = hsv(.data[["h"]], .data[["s"]], .data[["v"]]))
     if(n > nrow(x)) n <- nrow(x)
     if(type == "qual"){
@@ -83,18 +91,21 @@ image_pal <- function(file, n = 9, type = c("qual", "seq", "div"), bw = c(0, 1),
     }
   }
   if(plot){
-    if(quantize) image_quantmap(a, x, TRUE, TRUE, labels, label_size, label_color, keep_asp) else
+    if(quantize){
+      image_quantmap(a, x, k, TRUE, TRUE, labels, label_size, label_color, keep_asp)
+    } else {
       .view_image_pal(a, x, labels, label_size, label_color, keep_asp)
+    }
   }
   x
 }
 
 km <- function(x, centers) suppressWarnings(kmeans(x, centers, 30)$centers)
 
-.to_div_pal <- function(d, n){
+.to_div_pal <- function(d, n, mid){
   x <- km(d, 2)
   x <- c(do.call(hsv, as.list(x[1, ])), do.call(hsv, as.list(x[2, ])))
-  colorRampPalette(rev(c(x[1], "#FFFFFF", x[2])))(n)
+  colorRampPalette(rev(c(x[1], mid, x[2])))(n)
 }
 
 .to_qual_pal <- function(x, n){

@@ -4,9 +4,10 @@
 \alias{image_pal}
 \title{Create a color palette from an image}
 \usage{
-image_pal(file, n = 9, type = c("qual", "seq", "div"), bw = c(0, 1),
-  brightness = c(0, 1), saturation = c(0, 1), seq_by = "hsv",
-  seed = NULL, plot = FALSE, labels = TRUE, label_size = 1,
+image_pal(file, n = 9, type = c("qual", "seq", "div"), k = 100,
+  bw = c(0, 1), brightness = c(0, 1), saturation = c(0, 1),
+  seq_by = "hsv", div_center = "#FFFFFF", seed = NULL,
+  plot = FALSE, labels = TRUE, label_size = 1,
   label_color = "#000000", keep_asp = TRUE, quantize = FALSE)
 }
 \arguments{
@@ -16,6 +17,8 @@ image_pal(file, n = 9, type = c("qual", "seq", "div"), bw = c(0, 1),
 
 \item{type}{character, type of palette: qualitative, sequential or divergent (\code{"qual"}, \code{"seq"}, or \code{"div"}).}
 
+\item{k}{integer, the number of k-means cluster centers to consider in the image. See details.}
+
 \item{bw}{a numeric vector of length two giving the lower and upper quantiles to trim trim near-black and near-white colors in RGB space.}
 
 \item{brightness}{as above, trim possible colors based on brightness in HSV space.}
@@ -23,6 +26,8 @@ image_pal(file, n = 9, type = c("qual", "seq", "div"), bw = c(0, 1),
 \item{saturation}{as above, trim possible colors based on saturation in HSV space.}
 
 \item{seq_by}{character, sort sequential palette by HSV dimensions in a specific order, e.g., \code{"hsv"}, \code{"svh"}. See details.}
+
+\item{div_center}{character, color used for divergent palette center, defaults to white.}
 
 \item{seed}{numeric, set the seed for reproducible results.}
 
@@ -52,6 +57,11 @@ Creating a sequential palette from an arbitrary image that contains several hues
 This function does a decent job of creating qualitative, sequential and divergent palettes from images, but additional tweaking of function arguments is needed on a case by case basis.
 This can include trimming the extreme values of the color distribution in terms of brightness, saturation and presence of near-black/white colors as pre-processing steps.
 There is also variation in possible palettes from a given image, depending on the image complexity and other properties, though you can set the random seed for reproducibility.
+
+The number of k-means centers \code{k} defines the maximum number of unique colors to consider in the image for color binning prior to palette construction.
+This is different from \code{n}, the number of colors are desired in the derived palette. It is limited by the number of unique colors in the image.
+Larger \code{k} may allow for better palette construction under some conditions, but takes longer to run.
+\code{k} applies to sequential and qualitative palettes, but not divergent palettes.
 }
 \section{Trimming color distribution}{
 
@@ -87,7 +97,7 @@ image_pal(x, n = 3, type = "div",
 
 \donttest{
 # A challenging sequential mapping
-image_pal(x, n = 3, type = "seq", saturation = c(0.2, 1),
+image_pal(x, n = 3, type = "seq", k = 3, saturation = c(0.2, 1),
   brightness = c(0.5, 1), seq_by = "hsv", plot = FALSE)
 }
 }

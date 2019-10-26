@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/leonawicz/imgpalr",
   "issueTracker": "https://github.com/leonawicz/imgpalr/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -99,18 +99,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=magick"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "lintr",
-      "name": "lintr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=lintr"
     }
   ],
   "softwareRequirements": [
@@ -177,7 +165,6 @@
   ],
   "releaseNotes": "https://github.com/leonawicz/imgpalr/blob/master/NEWS.md",
   "readme": "https://github.com/leonawicz/imgpalr/blob/master/README.md",
-  "fileSize": "877.364KB",
   "contIntegration": [
     "https://travis-ci.org/leonawicz/imgpalr",
     "https://ci.appveyor.com/project/leonawicz/imgpalr",
@@ -190,5 +177,14 @@
     "color",
     "r",
     "package"
-  ]
+  ],
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "developmentStatus": "http://www.repostatus.org/#active",
+  "relatedLink": "https://CRAN.R-project.org/package=imgpalr",
+  "fileSize": "893.978KB"
 }

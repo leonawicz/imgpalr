@@ -8,17 +8,22 @@
 <image class="orcid" src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" height="16"></a>
 <br/> **License:** [MIT](https://opensource.org/licenses/MIT)<br/>
 
-[![CRAN
-status](http://www.r-pkg.org/badges/version/imgpalr)](https://cran.r-project.org/package=imgpalr)
-[![CRAN
-downloads](http://cranlogs.r-pkg.org/badges/grand-total/imgpalr)](https://cran.r-project.org/package=imgpalr)
-[![Rdoc](http://www.rdocumentation.org/badges/version/imgpalr)](http://www.rdocumentation.org/packages/imgpalr)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Travis build
 status](https://travis-ci.org/leonawicz/imgpalr.svg?branch=master)](https://travis-ci.org/leonawicz/imgpalr)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/leonawicz/imgpalr?branch=master&svg=true)](https://ci.appveyor.com/project/leonawicz/imgpalr)
 [![Codecov test
 coverage](https://codecov.io/gh/leonawicz/imgpalr/branch/master/graph/badge.svg)](https://codecov.io/gh/leonawicz/imgpalr?branch=master)
+
+[![CRAN
+status](http://www.r-pkg.org/badges/version/imgpalr)](https://cran.r-project.org/package=imgpalr)
+[![CRAN
+downloads](http://cranlogs.r-pkg.org/badges/grand-total/imgpalr)](https://cran.r-project.org/package=imgpalr)
+[![Github
+Stars](https://img.shields.io/github/stars/leonawicz/trekcolors.svg?style=social&label=Github)](https://github.com/leonawicz/imgpalr)
 
 The `imgpalr` package makes it easy to create color palettes from image
 files.
@@ -32,9 +37,28 @@ files.
   - Creating sequential palettes also offers control over the order of
     HSV color dimensions to sort by.
 
+<p>
+
+</p>
+
+<hr>
+
+*If you enjoy my R community contributions, consider [buying me a coffee
+in Ko-fi](ko-fi.com/leonawicz) (or through PayPal
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DHMC76S85GJCY&source=url"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" /></a>)
+so I can keep developing and maintaining this and other packages :)*
+
+<hr>
+
 ## Installation
 
-You can install the development version of `imgpalr` from GitHub with:
+Install the CRAN release of `imgpalr` with
+
+``` r
+install.packages("imgpalr")
+```
+
+Install the development version from GitHub with
 
 ``` r
 # install.packages("remotes")
@@ -172,3 +196,9 @@ If you want to directly manipulate the color properties of an image for
 its own sake rather than derive color palettes for other purposes, you
 can do so using the [magick](https://CRAN.R-project.org/package=magick)
 package, which provides bindings to the ImageMagick library.
+
+-----
+
+Please note that this project is released with a [Contributor Code of
+Conduct](https://github.com/leonawicz/imgpalr/blob/master/CODE_OF_CONDUCT.md).
+By participating in this project you agree to abide by its terms.

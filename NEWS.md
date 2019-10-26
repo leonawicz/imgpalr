@@ -1,3 +1,9 @@
+# imgpalr 0.2.2
+
+* Corrected syntax error in example.
+* Minor updates to documentation.
+* Fixes unit test file writing issue.
+
 # imgpalr 0.2.1
 
 * Examples and unit tests updated for CRAN release.
@@ -11,7 +17,6 @@
 # imgpalr 0.1.1
 
 * Fix bug in file downloader.
-
 
 # imgpalr 0.1.0
 

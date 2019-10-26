@@ -15,21 +15,25 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -39,12 +43,12 @@
 
   <link href="../extra.css" rel="stylesheet">
   
+
 <meta property="og:title" content="Create a color palette from an image — image_pal" />
-
 <meta property="og:description" content="Derive qualitative, sequential and divergent color palettes from an image on disk or at a URL." />
-
 <meta property="og:image" content="http://leonawicz.github.io/imgpalr/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -68,6 +72,7 @@
   gtag('config', 'UA-46129458-3');
 </script>
 
+
   </head>
 
   <body>
@@ -84,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">imgpalr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -92,7 +97,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -103,7 +108,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/leonawicz/imgpalr">
@@ -118,6 +122,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -129,16 +134,14 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Derive qualitative, sequential and divergent color palettes from an image on disk or at a URL.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>image_pal</span>(<span class='no'>file</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>9</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"qual"</span>, <span class='st'>"seq"</span>, <span class='st'>"div"</span>), <span class='kw'>bw</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>),
-  <span class='kw'>brightness</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>saturation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>seq_by</span> <span class='kw'>=</span> <span class='st'>"hsv"</span>,
+    <pre class="usage"><span class='fu'>image_pal</span>(<span class='no'>file</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>9</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"qual"</span>, <span class='st'>"seq"</span>, <span class='st'>"div"</span>), <span class='kw'>bw</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>),
+  <span class='kw'>brightness</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>saturation</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>seq_by</span> <span class='kw'>=</span> <span class='st'>"hsv"</span>,
   <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>label_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>label_color</span> <span class='kw'>=</span> <span class='st'>"#000000"</span>, <span class='kw'>keep_asp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>quantize</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -199,11 +202,10 @@
       <td><p>logical, quantize the reference thumbnail image in the plot using the derived color palette. See <code>image_quantmap</code>.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>character vector of hex colors, optionally draws a plot</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Ordering colors is a challenging problem. There are many ways to do it; none are perfect.
@@ -212,73 +214,63 @@ Color is a multi-dimensional property; any reduction to a a one dimensional colo
 This function does a decent job of creating qualitative, sequential and divergent palettes from images, but additional tweaking of function arguments is needed on a case by case basis.
 This can include trimming the extreme values of the color distribution in terms of brightness, saturation and presence of near-black/white colors as pre-processing steps.
 There is also variation in possible palettes from a given image, depending on the image complexity and other properties, though you can set the random seed for reproducibility.</p>
-    
     <h2 class="hasAnchor" id="trimming-color-distribution"><a class="anchor" href="#trimming-color-distribution"></a>Trimming color distribution</h2>
 
     
-    <p>Some pre-processing can be done to limit undesirable colors from ending up in a palette.
+
+<p>Some pre-processing can be done to limit undesirable colors from ending up in a palette.
 <code>bw</code> specifically drops near-black and near-white colors as soon as the image is loaded by looking at the average values in RGB space.
 <code>brightness</code> and <code>saturation</code> trimming are applied subsequently to trim lower and upper quantiles of the HSV value and saturation, respectively.
 If you have already trimmed black and white, keep in mind these two arguments will trim further from what remains of the color distribution.</p>
-    
     <h2 class="hasAnchor" id="choosing-appropriate-palette-type"><a class="anchor" href="#choosing-appropriate-palette-type"></a>Choosing appropriate palette type</h2>
 
     
-    <p>Keep in mind that many images simple do not make sense to try to derive sensible color palettes from.
+
+<p>Keep in mind that many images simple do not make sense to try to derive sensible color palettes from.
 For images that do lend themselves to a useful color palette derivation, some may only make sense to consider for a divergent palette, or an increasing/decreasing sequential palette,
 or only a qualitative palette if there are too many colors that are difficult to order.
 For divergent palettes in particular, it is recommended to trim white, e.g. <code>bw = c(0, 0.9)</code>, depending on the white space of a given image, since the divergent palettes are centered on white.</p>
-    
     <h2 class="hasAnchor" id="sorting-sequential-palettes"><a class="anchor" href="#sorting-sequential-palettes"></a>Sorting sequential palettes</h2>
 
     
-    <p><code>seq_by = "hsv"</code> orders the final palette by hue, then saturation, then value (brightness). This default is not meant to be ideal for all images.
+
+<p><code>seq_by = "hsv"</code> orders the final palette by hue, then saturation, then value (brightness). This default is not meant to be ideal for all images.
 It work better in cases where sequential palettes may contain several distinct hues, but not much variation in saturation or brightness.
 However, for example, palettes derived from an image with relatively little variation in hue may appear more sorted to the human eye if ordered by hue last using <code>"svh"</code> or <code>"vsh"</code>,
 depending on whether you want the palette to appear to transition more from lower saturation or lower brightness to the predominant hue.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='image_quantmap.html'>image_quantmap</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>set.seed(1)
-x <- "blue-yellow.jpg", system.file(package = "imgpalr")
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"blue-yellow.jpg"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"imgpalr"</span>)
 
-# Focus on bright, saturated colors for divergent palette:
-image_pal(x, n = 3, type = "div",
-  saturation = c(0.75, 1), brightness = c(0.75, 1), plot = TRUE)
-
-</div><div class='output co'>#&gt; <span class='error'>Error: &lt;text&gt;:2:23: unexpected ','</span>
-#&gt; <span class='error'>1: set.seed(1)</span>
-#&gt; <span class='error'>2: x &lt;- "blue-yellow.jpg",</span>
-#&gt; <span class='error'>                         ^</span></div><div class='input'><span class='co'># A challenging sequential mapping</span>
-<span class='fu'>image_pal</span>(<span class='no'>x</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"seq"</span>, <span class='kw'>saturation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.2</span>, <span class='fl'>1</span>),
-  <span class='kw'>brightness</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.5</span>, <span class='fl'>1</span>), <span class='kw'>seq_by</span> <span class='kw'>=</span> <span class='st'>"hsv"</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in gsub(".*(\\..*$)", "\\1", file): object 'x' not found</span></div></pre>
+<span class='co'># Focus on bright, saturated colors for divergent palette:</span>
+<span class='fu'>image_pal</span>(<span class='no'>x</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"div"</span>,
+  <span class='kw'>saturation</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.75</span>, <span class='fl'>1</span>), <span class='kw'>brightness</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.75</span>, <span class='fl'>1</span>), <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='image_pal-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; [1] "#B5A335" "#FFFFFF" "#4966A3"</div><div class='input'>
+<span class='co'># \donttest{</span>
+<span class='co'># A challenging sequential mapping</span>
+<span class='fu'>image_pal</span>(<span class='no'>x</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"seq"</span>, <span class='kw'>saturation</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.2</span>, <span class='fl'>1</span>),
+  <span class='kw'>brightness</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.5</span>, <span class='fl'>1</span>), <span class='kw'>seq_by</span> <span class='kw'>=</span> <span class='st'>"hsv"</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] "#B5AA53" "#667E9E" "#354B8D"</div><div class='input'># }
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#trimming-color-distribution">Trimming color distribution</a></li>
-
       <li><a href="#choosing-appropriate-palette-type">Choosing appropriate palette type</a></li>
-
       <li><a href="#sorting-sequential-palettes">Sorting sequential palettes</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -286,13 +278,16 @@ image_pal(x, n = 3, type = "div",
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

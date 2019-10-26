@@ -79,7 +79,7 @@ depending on whether you want the palette to appear to transition more from lowe
 
 \examples{
 set.seed(1)
-x <- "blue-yellow.jpg", system.file(package = "imgpalr")
+x <- system.file("blue-yellow.jpg", package = "imgpalr")
 
 # Focus on bright, saturated colors for divergent palette:
 image_pal(x, n = 3, type = "div",

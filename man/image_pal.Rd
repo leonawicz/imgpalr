@@ -4,11 +4,24 @@
 \alias{image_pal}
 \title{Create a color palette from an image}
 \usage{
-image_pal(file, n = 9, type = c("qual", "seq", "div"), k = 100,
-  bw = c(0, 1), brightness = c(0, 1), saturation = c(0, 1),
-  seq_by = "hsv", div_center = "#FFFFFF", seed = NULL,
-  plot = FALSE, labels = TRUE, label_size = 1,
-  label_color = "#000000", keep_asp = TRUE, quantize = FALSE)
+image_pal(
+  file,
+  n = 9,
+  type = c("qual", "seq", "div"),
+  k = 100,
+  bw = c(0, 1),
+  brightness = c(0, 1),
+  saturation = c(0, 1),
+  seq_by = "hsv",
+  div_center = "#FFFFFF",
+  seed = NULL,
+  plot = FALSE,
+  labels = TRUE,
+  label_size = 1,
+  label_color = "#000000",
+  keep_asp = TRUE,
+  quantize = FALSE
+)
 }
 \arguments{
 \item{file}{character, file path or URL to an image.}
@@ -96,9 +109,8 @@ image_pal(x, n = 3, type = "div",
   saturation = c(0.75, 1), brightness = c(0.75, 1), plot = TRUE)
 
 \donttest{
-# A challenging sequential mapping
-image_pal(x, n = 3, type = "seq", k = 3, saturation = c(0.2, 1),
-  brightness = c(0.5, 1), seq_by = "hsv", plot = FALSE)
+image_pal(x, n = 5, type = "seq", k = 2, saturation = c(0.5, 1),
+  brightness = c(0.25, 1), seq_by = "hsv")
 }
 }
 \seealso{

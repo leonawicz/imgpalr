@@ -1,12 +1,8 @@
 url: http://leonawicz.github.io/imgpalr
 
-template:
-  params:
-    ganalytics: UA-46129458-3
-
 authors:
   Matthew Leonawicz:
-    href: http://leonawicz.github.io/
+    href: https://github.com/leonawicz
 
 reference:
 - title: Package

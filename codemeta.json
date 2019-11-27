@@ -1,5 +1,8 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "imgpalr",
   "description": "Provides ability to create color palettes from image files. \n    It offers control over the type of color palette to derive from an image (qualitative, sequential or divergent) and other palette properties.\n    Quantiles of an image color distribution can be trimmed. \n    Near-black or near-white colors can be trimmed in RGB color space independent of trimming brightness or saturation distributions in HSV color space.\n    Creating sequential palettes also offers control over the order of HSV color dimensions to sort by.\n    This package differs from other related packages like 'RImagePalette' in approaches to quantizing and extracting colors in images to assemble color palettes \n    and the level of user control over palettes construction.",
@@ -7,7 +10,7 @@
   "codeRepository": "https://github.com/leonawicz/imgpalr",
   "issueTracker": "https://github.com/leonawicz/imgpalr/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -119,6 +122,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "farver",
+      "name": "farver",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=farver"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "tibble",
       "name": "tibble",
       "provider": {
@@ -168,9 +183,20 @@
   ],
   "releaseNotes": "https://github.com/leonawicz/imgpalr/blob/master/NEWS.md",
   "readme": "https://github.com/leonawicz/imgpalr/blob/master/README.md",
-  "fileSize": "897.402KB",
-  "contIntegration": ["https://travis-ci.org/leonawicz/imgpalr", "https://ci.appveyor.com/project/leonawicz/imgpalr", "https://codecov.io/gh/leonawicz/imgpalr?branch=master"],
+  "fileSize": "1125.03KB",
+  "contIntegration": [
+    "https://travis-ci.org/leonawicz/imgpalr",
+    "https://ci.appveyor.com/project/leonawicz/imgpalr",
+    "https://codecov.io/gh/leonawicz/imgpalr?branch=master"
+  ],
   "developmentStatus": "http://www.repostatus.org/#active",
-  "keywords": ["color-palette", "image-processing", "image-classification", "color", "r", "package"],
+  "keywords": [
+    "color-palette",
+    "image-processing",
+    "image-classification",
+    "color",
+    "r",
+    "package"
+  ],
   "relatedLink": "https://CRAN.R-project.org/package=imgpalr"
 }

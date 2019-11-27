@@ -15,6 +15,6 @@ NULL
 #' @importFrom tibble tibble
 #' @importFrom magrittr %>%
 #' @importFrom graphics par plot rect text rasterImage
-#' @importFrom grDevices rgb rgb2hsv hsv colorRampPalette
+#' @importFrom grDevices colorRampPalette
 #' @importFrom stats dist kmeans quantile
 NULL

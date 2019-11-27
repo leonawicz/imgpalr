@@ -64,9 +64,8 @@
 #'   saturation = c(0.75, 1), brightness = c(0.75, 1), plot = TRUE)
 #'
 #' \donttest{
-#' # A challenging sequential mapping
-#' image_pal(x, n = 3, type = "seq", k = 3, saturation = c(0.2, 1),
-#'   brightness = c(0.5, 1), seq_by = "hsv", plot = FALSE)
+#' image_pal(x, n = 5, type = "seq", k = 2, saturation = c(0.5, 1),
+#'   brightness = c(0.25, 1), seq_by = "hsv")
 #' }
 image_pal <- function(file, n = 9, type = c("qual", "seq", "div"), k = 100,
                       bw = c(0, 1), brightness = c(0, 1), saturation = c(0, 1),
@@ -81,9 +80,7 @@ image_pal <- function(file, n = 9, type = c("qual", "seq", "div"), k = 100,
     x <- .to_div_pal(d[, c("h", "s", "v")], n, div_center)
   } else {
     nmax <- nrow(dplyr::distinct_at(d, c("h", "s", "v")))
-    x <- km(d[, c("h", "s", "v")], min(k, nmax)) %>% tibble::as_tibble() %>%
-      dplyr::mutate(hex = hsv(.data[["h"]], .data[["s"]], .data[["v"]]))
-    if(n > nrow(x)) n <- nrow(x)
+    x <- km(d[, c("h", "s", "v")], min(k, nmax)) %>% tibble::as_tibble()
     if(type == "qual"){
       x <- .to_qual_pal(x, n)
     } else {
@@ -92,7 +89,7 @@ image_pal <- function(file, n = 9, type = c("qual", "seq", "div"), k = 100,
   }
   if(plot){
     if(quantize){
-      image_quantmap(a, x, k, TRUE, TRUE, labels, label_size, label_color, keep_asp)
+      image_quantmap(a, x, NULL, k, TRUE, TRUE, labels, label_size, label_color, keep_asp)
     } else {
       .view_image_pal(a, x, labels, label_size, label_color, keep_asp)
     }
@@ -104,12 +101,13 @@ km <- function(x, centers) suppressWarnings(kmeans(x, centers, 30)$centers)
 
 .to_div_pal <- function(d, n, mid){
   x <- km(d, 2)
-  x <- c(do.call(hsv, as.list(x[1, ])), do.call(hsv, as.list(x[2, ])))
+  x <- farver::encode_colour(x, from = "hsv")
   colorRampPalette(rev(c(x[1], mid, x[2])))(n)
 }
 
 .to_qual_pal <- function(x, n){
   get_idx <- function(y) y[[which.max(sapply(y, "[[", 2))]][[1]]
+  if(n > nrow(x)) n <- nrow(x)
   y <- lapply(1:10000, function(z){
     i <- sample(1:nrow(x), n)
     list(i, min(dist(x[i, c("h", "s", "v")])))
@@ -119,15 +117,16 @@ km <- function(x, centers) suppressWarnings(kmeans(x, centers, 30)$centers)
     i <- sample(1:n)
     list(i, mean(diff(x$h[i]) ^ 2))
   })
-  x$hex[get_idx(y)]
+  x <- x[get_idx(y), ]
+  farver::encode_colour(dplyr::select(x, c("h", "s", "v")), from = "hsv")
 }
 
 .to_seq_pal <- function(x, seq_by, n){
   x <- dplyr::arrange_at(x, seq_by) %>%
     dplyr::mutate(grp = cut(1:nrow(x), min(10, nrow(x)), FALSE)) %>% dplyr::arrange_at("grp") %>%
-    dplyr::group_by(.data[["grp"]]) %>% dplyr::summarise_at(c("h", "s", "v"), mean) %>%
-    dplyr::mutate(hex = hsv(.data[["h"]], .data[["s"]], .data[["v"]])) %>%
-    dplyr::arrange_at(seq_by)
+    dplyr::group_by(.data[["grp"]]) %>% dplyr::summarise_at(c("h", "s", "v"), mean)
+  x$hex <- farver::encode_colour(dplyr::select(x, c("h", "s", "v")), from = "hsv")
+  x <- dplyr::arrange_at(x, seq_by)
   colorRampPalette(x$hex)(n)
 }
 
@@ -136,9 +135,9 @@ km <- function(x, centers) suppressWarnings(kmeans(x, centers, 30)$centers)
     dplyr::mutate(r = as.numeric(a[, , 1]), g = as.numeric(a[, , 2]), b = as.numeric(a[, , 3]),
                   mn = pmin(.data[["r"]], .data[["g"]], .data[["b"]]),
                   mx = pmax(.data[["r"]], .data[["g"]], .data[["b"]])) %>%
-    dplyr::filter(.data[["mx"]] >= bw[1] & .data[["mn"]] <= bw[2]) %>%
-    dplyr::mutate(hex = rgb(.data[["r"]], .data[["g"]], .data[["b"]]))
-  d <- data.frame(t(rgb2hsv(t(d[, c("r", "g", "b")]), maxColorValue = 1)))
+    dplyr::filter(.data[["mx"]] >= bw[1] & .data[["mn"]] <= bw[2])
+  d$hex <- farver::encode_colour(255 * dplyr::select(d, c("r", "g", "b")))
+  d <- farver::convert_colour(255 * dplyr::select(d, c("r", "g", "b")), "rgb", "hsv")
   brt <- quantile(d$v, probs = brightness)
   sat <- quantile(d$s, probs = saturation)
   dplyr::filter(d, .data[["v"]] >= brt[1] & .data[["v"]] <= brt[2] &

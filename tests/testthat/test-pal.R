@@ -22,6 +22,8 @@ test_that("image_pal and image_quantmap returns as expected", {
     pal <- image_pal(x, type = "div")
     a <- image_quantmap(x, pal, plot = TRUE)
     expect_is(a, "array")
+    a <- image_quantmap(x, pal, rev(pal), plot = TRUE)
+    expect_is(a, "array")
     a <- image_quantmap(x, pal, plot = TRUE, show_pal = FALSE)
     expect_is(a, "array")
 

@@ -1,3 +1,9 @@
+# imgpalr 0.3.0
+
+* Updates to `image_quantmap`.
+* Use `farver` package internally in place of `grDevices` functions.
+* Update documentation.
+
 # imgpalr 0.2.2
 
 * Corrected syntax error in example.

@@ -25,6 +25,8 @@ downloads](http://cranlogs.r-pkg.org/badges/grand-total/imgpalr)](https://cran.r
 [![Github
 Stars](https://img.shields.io/github/stars/leonawicz/trekcolors.svg?style=social&label=Github)](https://github.com/leonawicz/imgpalr)
 
+[![Donate](https://img.shields.io/badge/Donate-Buy%20me%20a%20coffee-yellowgreen.svg)](https://ko-fi.com/leonawicz)
+
 The `imgpalr` package makes it easy to create color palettes from image
 files.
 
@@ -36,15 +38,6 @@ files.
     HSV space.
   - Creating sequential palettes also offers control over the order of
     HSV color dimensions to sort by.
-
-<hr>
-
-*If you enjoy my R community contributions, consider* ***[buying me a
-coffee in Ko-fi](https://ko-fi.com/leonawicz)*** *(or through PayPal
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DHMC76S85GJCY&source=url"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" /></a>)
-so I can keep developing and maintaining this and other packages :)*
-
-<hr>
 
 ## Installation
 
@@ -86,7 +79,7 @@ x <- paste0(system.file(package = "imgpalr"), "/",
   c("blue-yellow", "purples", "colors"), ".jpg")
 
 # Three palette types, one image
-# Focus on bright, saturated colors for divergent palette:
+# A divergent palette
 image_pal(x[1], type = "div",
   saturation = c(0.75, 1), brightness = c(0.75, 1), plot = TRUE)
 ```
@@ -95,7 +88,7 @@ image_pal(x[1], type = "div",
 
 ``` r
 
-# Remove colors too close to black and white for qualitative palette:
+# A qualitative palette
 image_pal(x[1], type = "qual", bw = c(0.25, 0.9), plot = TRUE)
 ```
 
@@ -103,9 +96,9 @@ image_pal(x[1], type = "qual", bw = c(0.25, 0.9), plot = TRUE)
 
 ``` r
 
- # A challenging sequential mapping
-image_pal(x[1], type = "seq", saturation = c(0.2, 1),
-  brightness = c(0.5, 1), seq_by = "hsv", plot = TRUE)
+ # A sequential palette
+image_pal(x[1], type = "seq", k = 2, saturation = c(0.75, 1),
+  brightness = c(0.75, 1), seq_by = "hsv", plot = TRUE)
 ```
 
 <img src="man/figures/README-example-3.png" width="100%" />
@@ -149,7 +142,6 @@ any image to an arbitrary color palette based on nearest distances in
 RGB space.
 
 ``` r
-
 image_pal(x[3], type = "qual", brightness = c(0.4, 1), plot = TRUE)
 ```
 
@@ -169,6 +161,41 @@ different palette. Depending on the settings and the nature of the
 source image, it may change quite a bit. If you need a reproducible
 palette, set the `seed` argument. In the example above, the seed was set
 globally to avoid having to set it in each call to `image_pal`.
+
+### Quantize and remap image colors
+
+You can quantize the colors in an image using `image_quantmap` directly.
+Choose any vector of colors. Each pixel has its color mapped to
+whichever of these colors it is closest to in RGB space. The RGB array
+is returned. You can plot the image with the palette.
+
+``` r
+x <- system.file("blue-yellow.jpg", package = "imgpalr")
+pal <- c("black", "navyblue", "dodgerblue", "yellow")
+a <- image_quantmap(x, pal, k = 7, plot = TRUE)
+```
+
+<img src="man/figures/README-quantmap-1.png" width="100%" />
+
+``` r
+str(a)
+#>  num [1:317, 1:400, 1:3] 0 0 0 0 0 0 0 0 0 0 ...
+```
+
+This works well if you want to quantize the colors to colors a short
+distance away in RGB space, but if you want to also swap them out for
+very different colors, this should be a two step process. If you provide
+an equal-length vector of colors to the `pal2` argument, these colors
+will replace those in `pal` after the initial quantization.
+
+``` r
+pal2 <- c("darkred", "darkgreen", "tomato", "orange")
+a <- image_quantmap(x, pal, pal2, k = 7, plot = TRUE, show_pal = FALSE)
+```
+
+<img src="man/figures/README-quantmap2-1.png" width="100%" />
+
+Note: This function can be very slow for large `k` and/or larger images.
 
 ## Related resources
 
@@ -195,6 +222,7 @@ package, which provides bindings to the ImageMagick library.
 
 -----
 
-Please note that this project is released with a [Contributor Code of
+Please note that the `imgpalr` project is released with a [Contributor
+Code of
 Conduct](https://github.com/leonawicz/imgpalr/blob/master/CODE_OF_CONDUCT.md).
-By participating in this project you agree to abide by its terms.
+By contributing to this project, you agree to abide by its terms.

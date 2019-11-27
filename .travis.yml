@@ -12,5 +12,14 @@ addons:
       - libmagick++-dev
       - cargo
 
-after_success:
-  - Rscript -e 'covr::codecov(line_exclusions = list("R/load.R" = c(32:33, 39:40, 46:47, 53:54)))'
+matrix:
+  include:
+   - r: release
+     after_success:
+       - Rscript -e 'covr::codecov(line_exclusions = list("R/load.R" = c(32:33, 39:40, 46:47, 53:54)))'
+   - r: devel
+     r_build_args: --no-build-vignettes
+     r_check_args: --ignore-vignettes --no-examples
+   - r: oldrel
+     r_build_args: --no-build-vignettes
+     r_check_args: --ignore-vignettes --no-examples

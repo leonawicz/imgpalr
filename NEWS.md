@@ -1,3 +1,7 @@
+# imgpalr 0.3.1
+
+* Documentation updates.
+
 # imgpalr 0.3.0
 
 * Updates to `image_quantmap`.

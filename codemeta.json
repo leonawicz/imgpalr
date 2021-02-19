@@ -182,7 +182,7 @@
   ],
   "releaseNotes": "https://github.com/leonawicz/imgpalr/blob/master/NEWS.md",
   "readme": "https://github.com/leonawicz/imgpalr/blob/master/README.md",
-  "fileSize": "4375.291KB",
+  "fileSize": "4375.572KB",
   "contIntegration": ["https://travis-ci.org/leonawicz/imgpalr", "https://ci.appveyor.com/project/leonawicz/imgpalr", "https://codecov.io/gh/leonawicz/imgpalr?branch=master"],
   "developmentStatus": "http://www.repostatus.org/#active",
   "keywords": [

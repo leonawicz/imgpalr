@@ -10,14 +10,13 @@
   "codeRepository": "https://github.com/leonawicz/imgpalr",
   "issueTracker": "https://github.com/leonawicz/imgpalr/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.1 (2019-07-05)",
+  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -29,7 +28,7 @@
       "@type": "Person",
       "givenName": "Matthew",
       "familyName": "Leonawicz",
-      "email": "matt_leonawicz@esource.com",
+      "email": "mfleonawicz@gmail.com",
       "@id": "https://orcid.org/0000-0001-9452-2771"
     }
   ],
@@ -41,7 +40,7 @@
       "@type": "Person",
       "givenName": "Matthew",
       "familyName": "Leonawicz",
-      "email": "matt_leonawicz@esource.com",
+      "email": "mfleonawicz@gmail.com",
       "@id": "https://orcid.org/0000-0001-9452-2771"
     }
   ],
@@ -183,12 +182,8 @@
   ],
   "releaseNotes": "https://github.com/leonawicz/imgpalr/blob/master/NEWS.md",
   "readme": "https://github.com/leonawicz/imgpalr/blob/master/README.md",
-  "fileSize": "1125.031KB",
-  "contIntegration": [
-    "https://travis-ci.org/leonawicz/imgpalr",
-    "https://ci.appveyor.com/project/leonawicz/imgpalr",
-    "https://codecov.io/gh/leonawicz/imgpalr?branch=master"
-  ],
+  "fileSize": "4375.291KB",
+  "contIntegration": ["https://travis-ci.org/leonawicz/imgpalr", "https://ci.appveyor.com/project/leonawicz/imgpalr", "https://codecov.io/gh/leonawicz/imgpalr?branch=master"],
   "developmentStatus": "http://www.repostatus.org/#active",
   "keywords": [
     "color-palette",

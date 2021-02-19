@@ -1,7 +1,8 @@
-pandoc: 2.7.2
-pkgdown: 1.4.1
+pandoc: 2.7.3
+pkgdown: 1.6.1
 pkgdown_sha: ~
-articles: []
+articles: {}
+last_built: 2021-02-19T19:44Z
 urls:
   reference: http://leonawicz.github.io/imgpalr/reference
   article: http://leonawicz.github.io/imgpalr/articles

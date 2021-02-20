@@ -182,9 +182,9 @@
   ],
   "releaseNotes": "https://github.com/leonawicz/imgpalr/blob/master/NEWS.md",
   "readme": "https://github.com/leonawicz/imgpalr/blob/master/README.md",
-  "fileSize": "4375.572KB",
+  "fileSize": "4375.676KB",
   "contIntegration": ["https://travis-ci.org/leonawicz/imgpalr", "https://ci.appveyor.com/project/leonawicz/imgpalr", "https://codecov.io/gh/leonawicz/imgpalr?branch=master"],
-  "developmentStatus": "http://www.repostatus.org/#active",
+  "developmentStatus": "https://www.repostatus.org/",
   "keywords": [
     "color-palette",
     "image-processing",

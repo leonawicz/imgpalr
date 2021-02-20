@@ -10,6 +10,7 @@
 0 errors | 0 warnings | 0 notes
 
 * This is an update release.
+* Fixed URL in readme that was caught on previous CRAN submission.
 * This update includes a maintainer email address update.
 
 I have also run R CMD check on downstream dependencies 

@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://leonawicz.github.io/imgpalr/404.html</loc>
+  </url>
+  <url>
+    <loc>http://leonawicz.github.io/imgpalr/authors.html</loc>
+  </url>
+  <url>
+    <loc>http://leonawicz.github.io/imgpalr/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
     <loc>http://leonawicz.github.io/imgpalr/index.html</loc>
+  </url>
+  <url>
+    <loc>http://leonawicz.github.io/imgpalr/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>http://leonawicz.github.io/imgpalr/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>http://leonawicz.github.io/imgpalr/news/index.html</loc>
   </url>
   <url>
     <loc>http://leonawicz.github.io/imgpalr/reference/image_load.html</loc>
@@ -14,5 +32,8 @@
   </url>
   <url>
     <loc>http://leonawicz.github.io/imgpalr/reference/imgpalr.html</loc>
+  </url>
+  <url>
+    <loc>http://leonawicz.github.io/imgpalr/reference/index.html</loc>
   </url>
 </urlset>

@@ -8,10 +8,6 @@
 ^revdep$
 ^docs$
 ^pkgdown$
-^appveyor\.yml$
-^\.travis\.yml$
-^codecov\.yml$
-^\.lintr$
 ^CRAN-RELEASE$
 ^README\.html$
 ^codemeta\.json$

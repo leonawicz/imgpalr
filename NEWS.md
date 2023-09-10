@@ -1,3 +1,7 @@
+# imgpalr 0.3.2
+
+* Added required package alias in documentation.
+
 # imgpalr 0.3.1
 
 * Documentation updates.

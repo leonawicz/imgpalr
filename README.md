@@ -3,21 +3,9 @@
 
 # imgpalr <img src="man/figures/logo.png" style="margin-left:10px;margin-bottom:5px;" width="120" align="right">
 
-**Author:** [Matthew Leonawicz](https://github.com/leonawicz)
-<a href="https://orcid.org/0000-0001-9452-2771" target="orcid.widget">
-<img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>
-<br/> **License:** [MIT](https://opensource.org/licenses/MIT)<br/>
-
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/)
-[![Travis build
-status](https://travis-ci.org/leonawicz/imgpalr.svg?branch=master)](https://travis-ci.org/leonawicz/imgpalr)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/leonawicz/imgpalr?branch=master&svg=true)](https://ci.appveyor.com/project/leonawicz/imgpalr)
-[![Codecov test
-coverage](https://codecov.io/gh/leonawicz/imgpalr/branch/master/graph/badge.svg)](https://codecov.io/gh/leonawicz/imgpalr?branch=master)
-
 [![CRAN
 status](http://www.r-pkg.org/badges/version/imgpalr)](https://cran.r-project.org/package=imgpalr)
 [![CRAN
@@ -25,19 +13,17 @@ downloads](http://cranlogs.r-pkg.org/badges/grand-total/imgpalr)](https://cran.r
 [![Github
 Stars](https://img.shields.io/github/stars/leonawicz/trekcolors.svg?style=social&label=Github)](https://github.com/leonawicz/imgpalr)
 
-[![Donate](https://img.shields.io/badge/Donate-Buy%20me%20a%20coffee-yellowgreen.svg)](https://ko-fi.com/leonawicz)
-
 The `imgpalr` package makes it easy to create color palettes from image
 files.
 
-  - Choose the type of color palette to derive from an image:
-    qualitative, sequential or divergent.
-  - Quantiles of an image color distribution can be trimmed.
-  - Near-black or near-white colors can be trimmed in RGB space
-    independent of trimming brightness or saturation distributions in
-    HSV space.
-  - Creating sequential palettes also offers control over the order of
-    HSV color dimensions to sort by.
+- Choose the type of color palette to derive from an image: qualitative,
+  sequential or divergent.
+- Quantiles of an image color distribution can be trimmed.
+- Near-black or near-white colors can be trimmed in RGB space
+  independent of trimming brightness or saturation distributions in HSV
+  space.
+- Creating sequential palettes also offers control over the order of HSV
+  color dimensions to sort by.
 
 ## Installation
 
@@ -220,7 +206,7 @@ its own sake rather than derive color palettes for other purposes, you
 can do so using the [magick](https://CRAN.R-project.org/package=magick)
 package, which provides bindings to the ImageMagick library.
 
------
+------------------------------------------------------------------------
 
 Please note that the `imgpalr` project is released with a [Contributor
 Code of

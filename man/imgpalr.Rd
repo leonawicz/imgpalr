@@ -3,6 +3,7 @@
 \docType{package}
 \name{imgpalr}
 \alias{imgpalr}
+\alias{imgpalr-package}
 \title{imgpalr: Create color palettes from images}
 \description{
 The \code{imgpalr} package is used for generating color palettes from image files.

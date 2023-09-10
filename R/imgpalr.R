@@ -10,6 +10,7 @@ globalVariables(c(".data"))
 #'
 #' @docType package
 #' @name imgpalr
+#' @aliases imgpalr-package
 NULL
 
 #' @importFrom tibble tibble

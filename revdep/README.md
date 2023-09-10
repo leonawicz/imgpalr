@@ -1,18 +1,18 @@
 # Platform
 
-|field    |value                                      |
-|:--------|:------------------------------------------|
-|version  |R version 4.3.1 (2023-06-16 ucrt)          |
-|os       |Windows 10 x64 (build 19045)               |
-|system   |x86_64, mingw32                            |
-|ui       |RStudio                                    |
-|language |(EN)                                       |
-|collate  |English_United States.utf8                 |
-|ctype    |English_United States.utf8                 |
-|tz       |America/Denver                             |
-|date     |2023-09-09                                 |
-|rstudio  |2023.06.1+524 Mountain Hydrangea (desktop) |
-|pandoc   |NA                                         |
+|field    |value                                                                                |
+|:--------|:------------------------------------------------------------------------------------|
+|version  |R version 4.3.1 (2023-06-16 ucrt)                                                    |
+|os       |Windows 10 x64 (build 19045)                                                         |
+|system   |x86_64, mingw32                                                                      |
+|ui       |RStudio                                                                              |
+|language |(EN)                                                                                 |
+|collate  |English_United States.utf8                                                           |
+|ctype    |English_United States.utf8                                                           |
+|tz       |America/Denver                                                                       |
+|date     |2023-09-09                                                                           |
+|rstudio  |2023.06.1+524 Mountain Hydrangea (desktop)                                           |
+|pandoc   |3.1.1 @ C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools/ (via rmarkdown) |
 
 # Dependencies
 

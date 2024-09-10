@@ -2,13 +2,23 @@
 % Please edit documentation in R/imgpalr.R
 \docType{package}
 \name{imgpalr}
-\alias{imgpalr}
 \alias{imgpalr-package}
-\title{imgpalr: Create color palettes from images}
+\alias{imgpalr}
+\title{imgpalr: Create Color Palettes from Images}
 \description{
-The \code{imgpalr} package is used for generating color palettes from image files.
-It offers control over the type of color palette to derive from an image (qualitative, sequential or divergent) and other palette properties.
-Quantiles of an image color distribution can be trimmed.
-Near-black or near-white colors can be trimmed in RGB color space independent of trimming brightness or saturation distributions in HSV color space.
-Creating sequential palettes also offers control over the order of HSV color dimensions to sort by.
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
+Provides ability to create color palettes from image files. It offers control over the type of color palette to derive from an image (qualitative, sequential or divergent) and other palette properties. Quantiles of an image color distribution can be trimmed. Near-black or near-white colors can be trimmed in RGB color space independent of trimming brightness or saturation distributions in HSV color space. Creating sequential palettes also offers control over the order of HSV color dimensions to sort by. This package differs from other related packages like 'RImagePalette' in approaches to quantizing and extracting colors in images to assemble color palettes and the level of user control over palettes construction.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/leonawicz/imgpalr}
+  \item Report bugs at \url{https://github.com/leonawicz/imgpalr/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Matthew Leonawicz \email{rpkgs@pm.me} (\href{https://orcid.org/0000-0001-9452-2771}{ORCID})
+
 }

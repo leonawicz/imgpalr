@@ -1,7 +1,7 @@
 Package: imgpalr
 Title: Create Color Palettes from Images
-Version: 0.3.2
-Authors@R: person("Matthew", "Leonawicz", email = "mfleonawicz@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-9452-2771"))
+Version: 0.4.0
+Authors@R: person("Matthew", "Leonawicz", email = "rpkgs@pm.me", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-9452-2771"))
 Description: Provides ability to create color palettes from image files. It 
     offers control over the type of color palette to derive from an image 
     (qualitative, sequential or divergent) and other palette properties.
@@ -31,4 +31,5 @@ Suggests:
 Encoding: UTF-8
 Language: en-US
 LazyData: true
-RoxygenNote: 7.2.3
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2

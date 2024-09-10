@@ -1,17 +1,18 @@
 ## Test environments
 
-* local Windows 10 install, R 4.3.1
-* win-builder
-* Ubuntu 20.04 devel, oldrel, release
+* Local Windows 10 install: R 4.4.1
+* Win Builder: R-devel, R-release
+* Ubuntu latest: R-devel, R-release, R-oldrel
+* MacOS latest: R-release
 
 ## Update release
 
-* Added required package alias per CRAN request.
+* Maintainer email address update.
 
 ## R CMD check results
 
 0 errors | 0 warnings | 0 notes
 
-I have also run R CMD check on downstream dependencies 
-(https://github.com/leonawicz/imgpalr/blob/master/revdep/). 
-All packages passed.
+## Reverse dependencies
+
+All checks pass. (https://github.com/leonawicz/imgpalr/blob/master/revdep/)

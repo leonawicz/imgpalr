@@ -1,22 +1,29 @@
 #' Quantize an image using an existing color palette
 #'
-#' Quantize image colors by mapping all pixels to the nearest color in RGB space, respectively, given an arbitrary palette.
+#' Quantize image colors by mapping all pixels to the nearest color in RGB space,
+#' respectively, given an arbitrary palette.
 #'
-#' The palette \code{pal} does not need to be related to the image colors.
-#' Each pixel will be assigned to whichever color in \code{pal} that it is nearest to in RGB space.
-#' You can use \code{pal2} to remap to arbitrary colors after quantizing.
-#' This function returns the new RGB array. You can plot a preview just like with \code{image_pal} using \code{plot = TRUE}.
-#' The number of k-means centers \code{k} is for binning image colors prior to mapping the palette \code{pal}.
-#' It is limited by the number of unique colors in the image. Larger \code{k} provides more binned distances between image colors and palette colors,
-#' but takes longer to run.
+#' The palette `pal` does not need to be related to the image colors. Each pixel
+#' will be assigned to whichever color in `pal` that it is nearest to in RGB space.
+#' You can use `pal2` to remap to arbitrary colors after quantizing. This function
+#' returns the new RGB array. You can plot a preview just like with `image_pal()`
+#' using `plot = TRUE`. The number of k-means centers `k` is for binning image
+#' colors prior to mapping the palette `pal`. It is limited by the number of
+#' unique colors in the image. Larger `k` provides more binned distances between
+#' image colors and palette colors, but takes longer to run.
 #'
-#' @param file if character, file path or URL to an image. You can also provide an RGB array from an already loaded image file.
-#' @param pal character, vector of hex colors, the color palette used to quantize the image colors.
-#' @param pal2 character, optional vector of hex colors, same length as \code{pal}.
-#' After quantizing image to \code{pal}, you can subsequently remap \code{pal} to \code{pal2}.
-#' @param k integer, the number of k-means cluster centers to consider in the image. See details.
-#' @param plot logical, plot the palette with quantized image reference thumbnail. If \code{FALSE}, only return the RGB array.
-#' @param show_pal logical, show the palette like with \code{image_pal}. If \code{FALSE}, plot only the image; all subsequent arguments ignored.
+#' @param file if character, file path or URL to an image. You can also provide
+#' an RGB array from an already loaded image file.
+#' @param pal character, vector of hex colors, the color palette used to
+#' quantize the image colors.
+#' @param pal2 character, optional vector of hex colors, same length as `pal`.
+#' After quantizing image to `pal`, you can subsequently remap `pal` to `pal2`.
+#' @param k integer, the number of k-means cluster centers to consider in the
+#' image. See details.
+#' @param plot logical, plot the palette with quantized image reference thumbnail.
+#' If `FALSE`, only return the RGB array.
+#' @param show_pal logical, show the palette like with `image_pal()`. If `FALSE`,
+#' plot only the image; all subsequent arguments ignored.
 #' @param labels logical, show hex color values in plot.
 #' @param label_size numeric, label size in plot.
 #' @param label_color text label color.
@@ -24,7 +31,7 @@
 #'
 #' @return an RGB array with values ranging from 0 to 1
 #' @export
-#' @seealso \code{\link{image_pal}}
+#' @seealso [image_pal()]
 #'
 #' @examples
 #' x <- system.file("blue-yellow.jpg", package = "imgpalr")

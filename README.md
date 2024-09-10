@@ -3,15 +3,21 @@
 
 # imgpalr <img src="man/figures/logo.png" style="margin-left:10px;margin-bottom:5px;" width="120" align="right">
 
+<!-- badges: start -->
+
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
-developed.](http://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/)
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/)
+[![R-CMD-check](https://github.com/leonawicz/imgpalr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/leonawicz/imgpalr/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/leonawicz/imgpalr/graph/badge.svg)](https://app.codecov.io/gh/leonawicz/imgpalr)
 [![CRAN
-status](http://www.r-pkg.org/badges/version/imgpalr)](https://cran.r-project.org/package=imgpalr)
+status](https://www.r-pkg.org/badges/version/imgpalr)](https://CRAN.R-project.org/package=imgpalr)
 [![CRAN
-downloads](http://cranlogs.r-pkg.org/badges/grand-total/imgpalr)](https://cran.r-project.org/package=imgpalr)
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/imgpalr)](https://cran.r-project.org/package=imgpalr)
 [![Github
-Stars](https://img.shields.io/github/stars/leonawicz/trekcolors.svg?style=social&label=Github)](https://github.com/leonawicz/imgpalr)
+Stars](https://img.shields.io/github/stars/leonawicz/imgpalr.svg?style=social&label=Github)](https://github.com/leonawicz/imgpalr)
+<!-- badges: end -->
 
 The `imgpalr` package makes it easy to create color palettes from image
 files.
@@ -42,11 +48,11 @@ remotes::install_github("leonawicz/imgpalr")
 
 ## Examples
 
-The main function is `image_pal`. It accepts PNG, JPG, BMP or GIF (first
-frame) images either from disk or URL. It returns a vector of colors
-defining a palette based on the image and your other function arguments.
-You can also set `plot = TRUE` to plot a preview of the palette, which
-includes the source image thumbnail for visual reference.
+The main function is `image_pal()`. It accepts PNG, JPG, BMP or GIF
+(first frame) images either from disk or URL. It returns a vector of
+colors defining a palette based on the image and your other function
+arguments. You can also set `plot = TRUE` to plot a preview of the
+palette, which includes the source image thumbnail for visual reference.
 
 The examples below offer some typical considerations to make when
 deriving a color palette from an arbitrary image.
@@ -122,7 +128,7 @@ sensible here. A sequential is likely best sorted by hue.
 
 Note in the second image below, you can also set `quantize = TRUE` to
 show a color-quantized reference thumbnail image based on the derived
-palette. This makes use of the `image_quantmap` function. Rather than
+palette. This makes use of the `image_quantmap()` function. Rather than
 only quantizing the image, it does so while also mapping the colors of
 any image to an arbitrary color palette based on nearest distances in
 RGB space.
@@ -141,19 +147,19 @@ image_pal(x[3], type = "seq", bw = c(0.2, 1), saturation = c(0.2, 1),
 <img src="man/figures/README-example3-2.png" width="100%" />
 
 Palette generation uses k-means clustering; results are different each
-time you call `image_pal`. If the palette you obtain does not feel
+time you call `image_pal()`. If the palette you obtain does not feel
 right, even with fixed arguments you can run it again to obtain a
 different palette. Depending on the settings and the nature of the
 source image, it may change quite a bit. If you need a reproducible
 palette, set the `seed` argument. In the example above, the seed was set
-globally to avoid having to set it in each call to `image_pal`.
+globally to avoid having to set it in each call to `image_pal()`.
 
 ### Quantize and remap image colors
 
-You can quantize the colors in an image using `image_quantmap` directly.
-Choose any vector of colors. Each pixel has its color mapped to
-whichever of these colors it is closest to in RGB space. The RGB array
-is returned. You can plot the image with the palette.
+You can quantize the colors in an image using `image_quantmap()`
+directly. Choose any vector of colors. Each pixel has its color mapped
+to whichever of these colors it is closest to in RGB space. The RGB
+array is returned. You can plot the image with the palette.
 
 ``` r
 x <- system.file("blue-yellow.jpg", package = "imgpalr")
@@ -197,14 +203,25 @@ but take some different approaches in methods for assembling color
 palettes.
 
 The palette preview (without the thumbnail addition) is based off of
-`scales::show_col`, which is a convenient function for plotting
-palettes. You can also use `pals::pal.bands` to do the same using a
+`scales::show_col()`, which is a convenient function for plotting
+palettes. You can also use `pals::pal.bands()` to do the same using a
 different visual layout.
 
 If you want to directly manipulate the color properties of an image for
 its own sake rather than derive color palettes for other purposes, you
 can do so using the [magick](https://CRAN.R-project.org/package=magick)
 package, which provides bindings to the ImageMagick library.
+
+## Citation
+
+Matthew Leonawicz (2024). imgpalr: Create Color Palettes from Images. R
+package version 0.4.0. <https://CRAN.R-project.org/package=imgpalr>
+
+## Contribute
+
+Contributions are welcome. Contribute through GitHub via pull request.
+Please create an issue first if it is regarding any substantive feature
+add or change.
 
 ------------------------------------------------------------------------
 

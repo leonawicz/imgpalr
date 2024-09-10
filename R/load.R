@@ -2,10 +2,12 @@
 #'
 #' Load PNG, JPG, BMP or GIF from disk or URL.
 #'
-#' The function will prompt you of the need to install a format-specific package if not installed and needed for
-#' the given \code{file} extension; \code{png}, \code{bmp}, \code{magick} (for GIF). \code{jpeg} is already imported for purpose of running examples.
+#' The function will prompt you of the need to install a format-specific package
+#' if not installed and needed for the given `file` extension; `png`, `bmp`,
+#' `magick` (for GIF). `jpeg` is already imported for purpose of running examples.
 #'
-#' @param file character, file name. A local file or URL. Extension must be one of png, jpg, jpeg, bmp or gif.
+#' @param file character, file name. A local file or URL. Extension must be one of
+#' `png`, `jpg`, `jpeg`, `bmp` or `gif`.
 #'
 #' @return an RBG array
 #' @export
